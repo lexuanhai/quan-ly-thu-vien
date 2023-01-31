@@ -23,23 +23,17 @@ namespace PhanMemQLTV
             QLSach.Show();
         }
 
-        private void quảnLýĐộcGiảToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmQLDocGia QLDocGia = new frmQLDocGia();
-            QLDocGia.Show();
-        }
+        //private void quảnLýĐộcGiảToolStripMenuItem1_Click(object sender, EventArgs e)
+        //{
+        //    frmQLDocGia QLDocGia = new frmQLDocGia();
+        //    QLDocGia.Show();
+        //}
 
         private void quảnLýMượnTrảToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmQLMuonTra QLMuonTra = new frmQLMuonTra();
             QLMuonTra.Show();
-        }
-
-        private void báoCáoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmBaoCaoThongKe BaoCaoThongKe = new frmBaoCaoThongKe();
-            BaoCaoThongKe.Show();
-        }
+        }      
 
         private void thoátToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -56,40 +50,46 @@ namespace PhanMemQLTV
             }
         }
 
-        private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmDangKyTT DKTT = new frmDangKyTT();
-            DKTT.Show();
-        }
+        //private void đăngKýToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmDangKyTT DKTT = new frmDangKyTT();
+        //    DKTT.Show();
+        //}
 
-        private void đổiMậtKhậuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmDoiMatKhau DoiMKTT = new frmDoiMatKhau();
-            DoiMKTT.Show();
-        }
+        //private void đổiMậtKhậuToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmDoiMatKhau DoiMKTT = new frmDoiMatKhau();
+        //    DoiMKTT.Show();
+        //}
 
-        private void phiếuThuTiềnPhạtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmPhieuthutienphat Thutienphat = new frmPhieuthutienphat();
-            Thutienphat.Show();
-        }
+        //private void phiếuThuTiềnPhạtToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmPhieuthutienphat Thutienphat = new frmPhieuthutienphat();
+        //    Thutienphat.Show();
+        //}
 
-        private void quảnLýNhàXuấtBảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmQLNhaXuatBan formShow = new frmQLNhaXuatBan();
-            formShow.Show();
-        }
+        //private void quảnLýNhàXuấtBảnToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmQLNhaXuatBan formShow = new frmQLNhaXuatBan();
+        //    formShow.Show();
+        //}
 
-        private void quảnLýTácGiảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmQLTacGia formShow = new frmQLTacGia();
-            formShow.Show();
-        }
+        //private void quảnLýTácGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmQLTacGia formShow = new frmQLTacGia();
+        //    formShow.Show();
+        //}
 
         private void quảnLýThểLoạiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmQLTheLoai formShow = new frmQLTheLoai();
             formShow.Show();
+        }
+
+        private void quanlydocgiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQLDocGia QLDocGia = new frmQLDocGia();
+            QLDocGia.Show();
         }
     }
 }

@@ -38,6 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGVTheLoai = new System.Windows.Forms.DataGridView();
+            this.tdMaTheLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tdTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tdGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblNhapGioiTinh = new System.Windows.Forms.Label();
             this.lblNhapDiaChi = new System.Windows.Forms.Label();
@@ -65,9 +68,6 @@
             this.errEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errGT = new System.Windows.Forms.ErrorProvider(this.components);
             this.errLoaiDG = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tdMaTheLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tdTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tdGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVTheLoai)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -88,7 +88,7 @@
             // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(429, 28);
+            this.txtGhiChu.Location = new System.Drawing.Point(429, 47);
             this.txtGhiChu.Multiline = true;
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(201, 59);
@@ -97,41 +97,41 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(355, 31);
+            this.label6.Location = new System.Drawing.Point(355, 50);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 16);
+            this.label6.Size = new System.Drawing.Size(70, 19);
             this.label6.TabIndex = 0;
             this.label6.Text = "Ghi Chú:";
             // 
             // txtTenTheLoai
             // 
-            this.txtTenTheLoai.Location = new System.Drawing.Point(121, 68);
+            this.txtTenTheLoai.Location = new System.Drawing.Point(121, 87);
             this.txtTenTheLoai.Name = "txtTenTheLoai";
-            this.txtTenTheLoai.Size = new System.Drawing.Size(169, 23);
+            this.txtTenTheLoai.Size = new System.Drawing.Size(169, 27);
             this.txtTenTheLoai.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 71);
+            this.label2.Location = new System.Drawing.Point(23, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 16);
+            this.label2.Size = new System.Drawing.Size(107, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tên Thể Loại :";
             // 
             // txtMaTheLoai
             // 
-            this.txtMaTheLoai.Location = new System.Drawing.Point(121, 28);
+            this.txtMaTheLoai.Location = new System.Drawing.Point(121, 47);
             this.txtMaTheLoai.Name = "txtMaTheLoai";
-            this.txtMaTheLoai.Size = new System.Drawing.Size(169, 23);
+            this.txtMaTheLoai.Size = new System.Drawing.Size(169, 27);
             this.txtMaTheLoai.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 30);
+            this.label1.Location = new System.Drawing.Point(23, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 16);
+            this.label1.Size = new System.Drawing.Size(104, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Thể Loại :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,11 +154,33 @@
             this.tdTen,
             this.tdGhiChu});
             this.dataGVTheLoai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGVTheLoai.Location = new System.Drawing.Point(3, 19);
+            this.dataGVTheLoai.Location = new System.Drawing.Point(3, 23);
             this.dataGVTheLoai.Name = "dataGVTheLoai";
-            this.dataGVTheLoai.Size = new System.Drawing.Size(753, 178);
+            this.dataGVTheLoai.RowHeadersWidth = 51;
+            this.dataGVTheLoai.Size = new System.Drawing.Size(753, 174);
             this.dataGVTheLoai.TabIndex = 0;
             this.dataGVTheLoai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVTheLoai_CellClick);
+            // 
+            // tdMaTheLoai
+            // 
+            this.tdMaTheLoai.HeaderText = "Mã Thể Loại";
+            this.tdMaTheLoai.MinimumWidth = 6;
+            this.tdMaTheLoai.Name = "tdMaTheLoai";
+            this.tdMaTheLoai.Width = 150;
+            // 
+            // tdTen
+            // 
+            this.tdTen.HeaderText = "Tên Thể Loại";
+            this.tdTen.MinimumWidth = 6;
+            this.tdTen.Name = "tdTen";
+            this.tdTen.Width = 250;
+            // 
+            // tdGhiChu
+            // 
+            this.tdGhiChu.HeaderText = "Ghi Chú";
+            this.tdGhiChu.MinimumWidth = 6;
+            this.tdGhiChu.Name = "tdGhiChu";
+            this.tdGhiChu.Width = 300;
             // 
             // groupBox1
             // 
@@ -183,7 +205,7 @@
             this.lblNhapGioiTinh.AutoSize = true;
             this.lblNhapGioiTinh.Location = new System.Drawing.Point(449, 50);
             this.lblNhapGioiTinh.Name = "lblNhapGioiTinh";
-            this.lblNhapGioiTinh.Size = new System.Drawing.Size(0, 16);
+            this.lblNhapGioiTinh.Size = new System.Drawing.Size(0, 19);
             this.lblNhapGioiTinh.TabIndex = 6;
             // 
             // lblNhapDiaChi
@@ -191,15 +213,15 @@
             this.lblNhapDiaChi.AutoSize = true;
             this.lblNhapDiaChi.Location = new System.Drawing.Point(449, 30);
             this.lblNhapDiaChi.Name = "lblNhapDiaChi";
-            this.lblNhapDiaChi.Size = new System.Drawing.Size(0, 16);
+            this.lblNhapDiaChi.Size = new System.Drawing.Size(0, 19);
             this.lblNhapDiaChi.TabIndex = 6;
             // 
             // lblNhapTenDG
             // 
             this.lblNhapTenDG.AutoSize = true;
-            this.lblNhapTenDG.Location = new System.Drawing.Point(114, 75);
+            this.lblNhapTenDG.Location = new System.Drawing.Point(114, 94);
             this.lblNhapTenDG.Name = "lblNhapTenDG";
-            this.lblNhapTenDG.Size = new System.Drawing.Size(0, 16);
+            this.lblNhapTenDG.Size = new System.Drawing.Size(0, 19);
             this.lblNhapTenDG.TabIndex = 6;
             // 
             // btnLuu
@@ -306,7 +328,7 @@
             // 
             this.txtNDTimKiem.Location = new System.Drawing.Point(11, 24);
             this.txtNDTimKiem.Name = "txtNDTimKiem";
-            this.txtNDTimKiem.Size = new System.Drawing.Size(332, 23);
+            this.txtNDTimKiem.Size = new System.Drawing.Size(332, 27);
             this.txtNDTimKiem.TabIndex = 0;
             this.txtNDTimKiem.TextChanged += new System.EventHandler(this.txtNDTimKiem_TextChanged);
             // 
@@ -326,7 +348,7 @@
             this.radTenDG.AutoSize = true;
             this.radTenDG.Location = new System.Drawing.Point(106, 24);
             this.radTenDG.Name = "radTenDG";
-            this.radTenDG.Size = new System.Drawing.Size(101, 20);
+            this.radTenDG.Size = new System.Drawing.Size(119, 23);
             this.radTenDG.TabIndex = 1;
             this.radTenDG.TabStop = true;
             this.radTenDG.Text = "Tên Thể Loại";
@@ -337,7 +359,7 @@
             this.radMaDG.AutoSize = true;
             this.radMaDG.Location = new System.Drawing.Point(7, 24);
             this.radMaDG.Name = "radMaDG";
-            this.radMaDG.Size = new System.Drawing.Size(97, 20);
+            this.radMaDG.Size = new System.Drawing.Size(116, 23);
             this.radMaDG.TabIndex = 0;
             this.radMaDG.TabStop = true;
             this.radMaDG.Text = "Mã Thẻ Loại";
@@ -349,7 +371,7 @@
             this.btnLoadDS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLoadDS.Location = new System.Drawing.Point(381, 121);
             this.btnLoadDS.Name = "btnLoadDS";
-            this.btnLoadDS.Size = new System.Drawing.Size(145, 39);
+            this.btnLoadDS.Size = new System.Drawing.Size(157, 39);
             this.btnLoadDS.TabIndex = 1;
             this.btnLoadDS.Text = "Load Danh Sách";
             this.btnLoadDS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -396,27 +418,9 @@
             // 
             this.errLoaiDG.ContainerControl = this;
             // 
-            // tdMaTheLoai
-            // 
-            this.tdMaTheLoai.HeaderText = "Mã Thể Loại";
-            this.tdMaTheLoai.Name = "tdMaTheLoai";
-            this.tdMaTheLoai.Width = 150;
-            // 
-            // tdTen
-            // 
-            this.tdTen.HeaderText = "Tên Thể Loại";
-            this.tdTen.Name = "tdTen";
-            this.tdTen.Width = 250;
-            // 
-            // tdGhiChu
-            // 
-            this.tdGhiChu.HeaderText = "Ghi Chú";
-            this.tdGhiChu.Name = "tdGhiChu";
-            this.tdGhiChu.Width = 300;
-            // 
             // frmQLTheLoai
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));

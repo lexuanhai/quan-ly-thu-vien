@@ -48,7 +48,7 @@
             this.lblTenDangNhap.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.lblTenDangNhap.Location = new System.Drawing.Point(170, 17);
             this.lblTenDangNhap.Name = "lblTenDangNhap";
-            this.lblTenDangNhap.Size = new System.Drawing.Size(94, 16);
+            this.lblTenDangNhap.Size = new System.Drawing.Size(110, 19);
             this.lblTenDangNhap.TabIndex = 1;
             this.lblTenDangNhap.Text = "Tên đăng nhập:";
             // 
@@ -56,7 +56,7 @@
             // 
             this.txtTenDangNhap.Location = new System.Drawing.Point(174, 35);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
-            this.txtTenDangNhap.Size = new System.Drawing.Size(191, 23);
+            this.txtTenDangNhap.Size = new System.Drawing.Size(191, 27);
             this.txtTenDangNhap.TabIndex = 0;
             // 
             // lblMatKhau
@@ -65,7 +65,7 @@
             this.lblMatKhau.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMatKhau.Location = new System.Drawing.Point(170, 75);
             this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(63, 16);
+            this.lblMatKhau.Size = new System.Drawing.Size(76, 19);
             this.lblMatKhau.TabIndex = 1;
             this.lblMatKhau.Text = "Mật khẩu:";
             // 
@@ -73,13 +73,14 @@
             // 
             this.txtMatKhau.Location = new System.Drawing.Point(174, 93);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(191, 23);
+            this.txtMatKhau.Size = new System.Drawing.Size(191, 27);
             this.txtMatKhau.TabIndex = 1;
             this.txtMatKhau.UseSystemPasswordChar = true;
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnDangNhap.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnDangNhap.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDangNhap.Location = new System.Drawing.Point(173, 160);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(87, 27);
@@ -90,8 +91,9 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.BackColor = System.Drawing.Color.Red;
+            this.btnThoat.BackColor = System.Drawing.Color.Gray;
             this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnThoat.ForeColor = System.Drawing.SystemColors.Window;
             this.btnThoat.Location = new System.Drawing.Point(278, 160);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(87, 27);
@@ -108,7 +110,7 @@
             this.picLockDangNhap.Location = new System.Drawing.Point(12, 17);
             this.picLockDangNhap.Name = "picLockDangNhap";
             this.picLockDangNhap.Size = new System.Drawing.Size(147, 170);
-            this.picLockDangNhap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLockDangNhap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLockDangNhap.TabIndex = 0;
             this.picLockDangNhap.TabStop = false;
             this.picLockDangNhap.Click += new System.EventHandler(this.picLockDangNhap_Click);
@@ -118,7 +120,7 @@
             this.chkQuanTri.AutoSize = true;
             this.chkQuanTri.Location = new System.Drawing.Point(188, 127);
             this.chkQuanTri.Name = "chkQuanTri";
-            this.chkQuanTri.Size = new System.Drawing.Size(76, 20);
+            this.chkQuanTri.Size = new System.Drawing.Size(85, 23);
             this.chkQuanTri.TabIndex = 8;
             this.chkQuanTri.TabStop = true;
             this.chkQuanTri.Text = "Thủ Thư";
@@ -129,7 +131,7 @@
             this.chkDocGia.AutoSize = true;
             this.chkDocGia.Location = new System.Drawing.Point(280, 127);
             this.chkDocGia.Name = "chkDocGia";
-            this.chkDocGia.Size = new System.Drawing.Size(72, 20);
+            this.chkDocGia.Size = new System.Drawing.Size(87, 23);
             this.chkDocGia.TabIndex = 8;
             this.chkDocGia.TabStop = true;
             this.chkDocGia.Text = "Độc Giả";
@@ -138,7 +140,7 @@
             // frmDangNhap
             // 
             this.AcceptButton = this.btnDangNhap;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));

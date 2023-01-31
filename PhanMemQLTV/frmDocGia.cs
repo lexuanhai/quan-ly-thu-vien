@@ -103,11 +103,11 @@ namespace PhanMemQLTV
             this.Close();
         }
 
-        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmDoiMKDG MKDG = new frmDoiMKDG();
-            MKDG.Show();
-        }
+        //private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    frmDoiMKDG MKDG = new frmDoiMKDG();
+        //    MKDG.Show();
+        //}
 
         private void dataGridViewDSSach0_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

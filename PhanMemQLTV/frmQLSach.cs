@@ -110,20 +110,20 @@ namespace PhanMemQLTV
             dt = common.docdulieu(query);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
-                var lstViTri = new List<ViTri>();
-                foreach (DataRow item in dt.Rows)
-                {
-                    var viTri = new ViTri();
-                    viTri.MaViTri = item["MaViTri"].ToString();
-                    viTri.Khu = item["Khu"].ToString();
-                    viTri.Ke = item["Ke"].ToString();
-                    viTri.Ngan = item["Ngan"].ToString();
-                    viTri.Name = viTri.Khu + " - " + viTri.Ke + " - "+ viTri.Ngan;
-                    lstViTri.Add(viTri);
-                }
-                cmbViTri.DisplayMember = "Name";
-                cmbViTri.ValueMember = "MaViTri";
-                cmbViTri.DataSource = lstViTri;
+                //var lstViTri = new List<ViTri>();
+                //foreach (DataRow item in dt.Rows)
+                //{
+                //    var viTri = new ViTri();
+                //    viTri.MaViTri = item["MaViTri"].ToString();
+                //    viTri.Khu = item["Khu"].ToString();
+                //    viTri.Ke = item["Ke"].ToString();
+                //    viTri.Ngan = item["Ngan"].ToString();
+                //    viTri.Name = viTri.Khu + " - " + viTri.Ke + " - "+ viTri.Ngan;
+                //    lstViTri.Add(viTri);
+                //}
+                //cmbViTri.DisplayMember = "Name";
+                //cmbViTri.ValueMember = "MaViTri";
+                //cmbViTri.DataSource = lstViTri;
             }
            
         }
