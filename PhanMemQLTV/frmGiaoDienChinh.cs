@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmGiaoDienChinh : Form
     {

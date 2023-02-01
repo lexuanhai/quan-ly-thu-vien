@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
-using PhanMemQLTV.Model;
+using QuanLyThuVien.Model;
 using System.Collections;
 using System.Reflection;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmQLTheLoai : Form
     {
@@ -312,66 +312,11 @@ namespace PhanMemQLTV
                 errTenNhaSanXuat.Clear();
             }
 
-            //if (txtEmail.Text == "")
-            //{
-            //    errEmail.SetError(txtEmail, "Vui lòng nhập Email");
-            //}
-            //else
-            //{
-            //    errEmail.Clear();
-            //}
-
-            //if (txtDiaChi.Text == "")
-            //{
-            //    errDC.SetError(txtDiaChi, "Vui lòng nhập Địa chỉ");
-            //}
-            //else
-            //{
-            //    errDC.Clear();
-            //}
-
-            //if (txtSoDienThoai.Text == "")
-            //{
-            //    errTenTK.SetError(txtSoDienThoai, "Vui lòng nhập Tên TK");
-            //}
-            //else
-            //{
-            //    errTenTK.Clear();
-            //}
-
-            //if (txtMK.Text == "")
-            //{
-            //    errMK.SetError(txtMK, "Vui lòng nhập MK");
-            //}
-            //else
-            //{
-            //    errMK.Clear();
-            //}
-
-            //if (cboGioiTinh.Text == "")
-            //{
-            //    errGT.SetError(cboGioiTinh, "Vui lòng chọn Giới Tính");
-            //}
-            //else
-            //{
-            //    errGT.Clear();
-            //}
-
-            //if (cboLoaiDG.Text == "")
-            //{
-            //    errLoaiDG.SetError(cboLoaiDG, "Vui lòng nhập Loại ĐG");
-            //}
-            //else
-            //{
-            //    errLoaiDG.Clear();
-            //}
-
-
             if (txtTenTheLoai.Text.Length > 0)
             {
-
                 if (xuly == 0)
                 {
+
                     ThemMoi();
                 }
                 else if (xuly == 1)

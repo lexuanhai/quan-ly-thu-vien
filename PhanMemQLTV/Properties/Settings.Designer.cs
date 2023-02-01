@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhanMemQLTV.Properties
+namespace QuanLyThuVien.Properties
 {
 
 

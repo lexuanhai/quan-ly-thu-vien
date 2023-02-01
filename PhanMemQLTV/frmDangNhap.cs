@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmDangNhap : Form
     {

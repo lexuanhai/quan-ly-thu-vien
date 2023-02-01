@@ -1,4 +1,4 @@
-﻿namespace PhanMemQLTV
+﻿namespace QuanLyThuVien
 {
     partial class frmQLSach
     {

@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
-using PhanMemQLTV.Model;
+using QuanLyThuVien.Model;
 using System.Reflection;
 using System.Collections;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmQLPhieuMuon : Form
     {

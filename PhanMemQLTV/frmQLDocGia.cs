@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
-using PhanMemQLTV.Model;
+using QuanLyThuVien.Model;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmQLDocGia : Form
     {
@@ -65,7 +65,7 @@ namespace PhanMemQLTV
         // Load
         private void frmQLDocGia_Load(object sender, EventArgs e)
         {
-            string cauTruyVan = "select docgia.MaDG,docgia.TenDG,docgia.GioiTinhDG,docgia.NgaySinhDG,docgia.EmailDG,docgia.DiaChiDG,docgia.LoaiDG,docgia.GhiChu,docgia.TenTaiKhoanDG,docgia.MatKhauDG,the.NgayBatDau,the.NgayHeHan from tblDocGia docgia left join tblTheThuVien the on docgia.MaDG = the.MaDocGia";
+            string cauTruyVan = "select docgia.MaDG,docgia.TenDG,docgia.GioiTinhDG,docgia.NgaySinhDG,docgia.EmailDG,docgia.DiaChiDG,docgia.LoaiDG,docgia.GhiChu,docgia.TenTaiKhoanDG,docgia.MatKhauDG,the.NgayBatDau,the.NgayHeHan from tblDocGia docgia";
             //dataGridViewDSDocGia.AutoGenerateColumns = false;
             dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);           
             myConnection.Close();
@@ -346,18 +346,10 @@ namespace PhanMemQLTV
             {
                 errLoaiDG.Clear();
             }
-            
-            
+                        
             if(txtMaDG.Text.Length>0 && txtTenDG.Text.Length>0 && txtDiaChi.Text.Length>0  && dtmNgaySinh.Text.Length>0 && cboGioiTinh.Text.Length>0 && txtTenTK.Text.Length>0 && txtMK.Text.Length>0 && cboLoaiDG.Text.Length>0 )
-            {
-                //string query = "Select giatri from ThamSo  where Tents = 'SoTuoiDGMin'";
-                //ketnoi(query);
-                //myConnection = new SqlConnection(chuoiKetNoi);
-                //myConnection.Open();
-                int tuoiMin = 18; //Convert.ToInt32(myCommand.ExecuteScalar());
-
-                //query = "Select giatri from ThamSo  where Tents = 'SoTuoiDGMax'";
-                //ketnoi(query);
+            {              
+                int tuoiMin = 18;
                 int tuoiMax = 30;// Convert.ToInt32(myCommand.ExecuteScalar());
 
                 string[] nam = dtmNgaySinh.Text.Split('/');
@@ -378,10 +370,6 @@ namespace PhanMemQLTV
                 {
                     try
                     {
-                        //string capnhatdongsql;
-                        //capnhatdongsql = "update tblDocGia set NgLapThe = '" + dtmNgLapThe.Text + "' where MaDG = '" + txtMaDG.Text + "'";
-                        //ketnoi(capnhatdongsql);
-                        //myCommand.ExecuteNonQuery();
                         MessageBox.Show("Sửa thành công.", "Thông Báo");
                     }
                     catch

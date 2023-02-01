@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
-using PhanMemQLTV.Model;
+using QuanLyThuVien.Model;
 using System.Reflection;
 
-namespace PhanMemQLTV
+namespace QuanLyThuVien
 {
     public partial class frmQLMuonTra : Form
     {
