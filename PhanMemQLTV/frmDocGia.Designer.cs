@@ -48,7 +48,6 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3.SuspendLayout();
             this.grpTimKiem.SuspendLayout();
@@ -251,19 +250,12 @@
             this.menuStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.đổiMậtKhẩuToolStripMenuItem,
             this.thoátToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(767, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // đổiMậtKhẩuToolStripMenuItem
-            // 
-            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
-            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi Mật Khẩu";
             // 
             // thoátToolStripMenuItem
             // 
@@ -313,7 +305,6 @@
         private System.Windows.Forms.DataGridView dataGridViewDSSach0;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenSach;

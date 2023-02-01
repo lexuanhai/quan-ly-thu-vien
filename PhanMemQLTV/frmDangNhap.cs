@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using QuanLyThuVien.Model;
 
 namespace QuanLyThuVien
 {
@@ -18,7 +19,7 @@ namespace QuanLyThuVien
         {
             InitializeComponent();
         }
-        string chuoiKetNoi = ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
+        Common common = new Common();
         private SqlConnection myConnection;
         private SqlCommand myCommand;
 
@@ -39,7 +40,7 @@ namespace QuanLyThuVien
         private int x1=0,x2=0;
         private void xacThucTKTT()
         {
-            myConnection = new SqlConnection(chuoiKetNoi);
+            myConnection = new SqlConnection(Common.chuoiKetNoi);
             myConnection.Open();
             string strCauTruyVan = "select count(*) from tblThuThu where TaiKhoanTT=@acc and MatKhauTT=@pass";
             myCommand = new SqlCommand(strCauTruyVan, myConnection);
@@ -52,7 +53,7 @@ namespace QuanLyThuVien
         // Phương thức kiểm tra TKDG
         private void xacThucTKDG()
         {
-            myConnection = new SqlConnection(chuoiKetNoi);
+            myConnection = new SqlConnection(Common.chuoiKetNoi);
             myConnection.Open();
             string query = "set dateformat dmy";
             myCommand = new SqlCommand(query, myConnection);
@@ -101,11 +102,7 @@ namespace QuanLyThuVien
                         xacThucTKDG();
                         if (x2 == 1)
                         {
-                            MessageBox.Show("ĐG Đăng Nhập thành công.", "Thông Báo");
-                            //frmGiaoDienChinh GiaoDienChinh = new frmGiaoDienChinh();
-                            //GiaoDienChinh.FormClosed += new FormClosedEventHandler(DongForm);
-                            //this.Hide();
-                            //GiaoDienChinh.Show();
+                            MessageBox.Show("Đăng Nhập thành công.", "Thông Báo");
 
                             frmDocGia DG = new frmDocGia(txtTenDangNhap.Text);
                             DG.Show();

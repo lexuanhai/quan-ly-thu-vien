@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLSach));
             this.grpTTSach = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbViTri = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.cmbTheLoai = new System.Windows.Forms.ComboBox();
             this.cmbNXB = new System.Windows.Forms.ComboBox();
             this.cmbTacGia = new System.Windows.Forms.ComboBox();
@@ -119,8 +117,6 @@
             // grpTTSach
             // 
             this.grpTTSach.Controls.Add(this.label12);
-            this.grpTTSach.Controls.Add(this.cmbViTri);
-            this.grpTTSach.Controls.Add(this.label13);
             this.grpTTSach.Controls.Add(this.cmbTheLoai);
             this.grpTTSach.Controls.Add(this.cmbNXB);
             this.grpTTSach.Controls.Add(this.cmbTacGia);
@@ -166,26 +162,6 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(0, 19);
             this.label12.TabIndex = 19;
-            // 
-            // cmbViTri
-            // 
-            this.cmbViTri.FormattingEnabled = true;
-            this.cmbViTri.Items.AddRange(new object[] {
-            "Mới",
-            "Cũ"});
-            this.cmbViTri.Location = new System.Drawing.Point(114, 208);
-            this.cmbViTri.Name = "cmbViTri";
-            this.cmbViTri.Size = new System.Drawing.Size(195, 27);
-            this.cmbViTri.TabIndex = 18;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(34, 210);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 19);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Vị Trí:";
             // 
             // cmbTheLoai
             // 
@@ -895,7 +871,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTinhTrang;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGhiChu;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbViTri;
-        private System.Windows.Forms.Label label13;
     }
 }

@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
 using QuanLyThuVien.Model;
+using System.Collections;
+using System.Reflection;
 
 namespace QuanLyThuVien
 {
@@ -20,30 +22,7 @@ namespace QuanLyThuVien
         {
             InitializeComponent();
         }
-
-        // Khai báo 
         Common common = new Common();
-        string chuoiKetNoi = ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
-        private SqlConnection myConnection; // kết nối tới csdl
-        private SqlDataAdapter myDataAdapter;   // Vận chuyển csdl qa DataSet
-        private DataTable myTable;  // Dùng để lưu bảng lấy từ c#
-        SqlCommand myCommand;   // Thực hiện cách lệnh truy vấn
-
-        // Phương thức kết nối
-        private DataTable ketnoi(string truyvan)
-        {
-            myConnection = new SqlConnection(chuoiKetNoi);
-            myConnection.Open();
-            string thuchiencaulenh = truyvan;
-            myCommand = new SqlCommand(thuchiencaulenh, myConnection);
-            myDataAdapter = new SqlDataAdapter(myCommand);
-            myTable = new DataTable();
-            myDataAdapter.Fill(myTable);
-            dataGridViewDSDocGia.DataSource = myTable;
-            return myTable;
-        }
-
-        // Phương thức thiết lập Controls
         private void setControls(bool edit)
         {
             txtTenDG.Enabled = edit;
@@ -54,113 +33,75 @@ namespace QuanLyThuVien
             txtTenTK.Enabled = edit;
             txtMK.Enabled = edit;
             txtGhiChu.Enabled = edit;
-            cboLoaiDG.Enabled = edit;
-            cboLoaiDG.Enabled = edit;
-            cboLoaiDG.Enabled = edit;
-            dtNgayTaoTher.Enabled = edit;
-            dtNgayHetHan.Enabled = edit;
-            //dtmNgLapThe.Enabled = edit;
         }
 
+        public void LoadData(string query = "")
+        {
+            DataTable dt;
+            if (!string.IsNullOrEmpty(query))
+            {
+                dt = common.docdulieu(query);
+            }
+            else
+            {
+                dt = common.docdulieu("select * from tblDocGia order by MaDG desc");
+            }
+            dataGridViewDSDocGia.Rows.Clear();
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    int n = dataGridViewDSDocGia.Rows.Add();
+                    dataGridViewDSDocGia.Rows[n].Cells[0].Value = dr["MaDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[1].Value = dr["TenDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[2].Value = dr["GioiTinhDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[3].Value = dr["NgaySinhDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[4].Value = dr["EmailDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[5].Value = dr["DiaChiDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[6].Value = dr["GhiChu"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[7].Value = dr["TenTaiKhoanDG"].ToString();
+                    dataGridViewDSDocGia.Rows[n].Cells[8].Value = dr["MatKhauDG"].ToString();
+                }
+            }
+        }
         // Load
         private void frmQLDocGia_Load(object sender, EventArgs e)
         {
-            string cauTruyVan = "select docgia.MaDG,docgia.TenDG,docgia.GioiTinhDG,docgia.NgaySinhDG,docgia.EmailDG,docgia.DiaChiDG,docgia.LoaiDG,docgia.GhiChu,docgia.TenTaiKhoanDG,docgia.MatKhauDG,the.NgayBatDau,the.NgayHeHan from tblDocGia docgia";
-            //dataGridViewDSDocGia.AutoGenerateColumns = false;
-            dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);           
-            myConnection.Close();
+            LoadData();
             setControls(false);
-            dataGridViewDSDocGia.Enabled = true;
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
-            txtMaDG.Enabled = false;
+            txtMaDG.Enabled = false;           
         }
 
         // Phương thức hiển thị các thuộc tính bảng Độc Giả lên txt
         public string maDG, tenDG, gioiTinhDG, ngaySinhDG, diaChiDG, sdtDG, loaiDG, ghiChu, tenTK, mK, NgLapThe;
         private void dataGridViewDSDocGia_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                int row = e.RowIndex;
-                txtMaDG.Text = myTable.Rows[row]["MaDG"].ToString();
-                maDG = txtMaDG.Text;
-                txtTenDG.Text = myTable.Rows[row]["TenDG"].ToString();
-                tenDG = txtTenDG.Text;
-                cboGioiTinh.Text = myTable.Rows[row]["GioiTinhDG"].ToString();
-                gioiTinhDG = cboGioiTinh.Text;
-                dtmNgaySinh.Text = myTable.Rows[row]["NgaySinhDG"].ToString();
-                ngaySinhDG = dtmNgaySinh.Text;
-                txtEmail.Text = myTable.Rows[row]["SDTDG"].ToString();
-                sdtDG = txtEmail.Text;
-                txtDiaChi.Text = myTable.Rows[row]["DiaChiDG"].ToString();
-                diaChiDG = txtDiaChi.Text;
-                cboLoaiDG.Text = myTable.Rows[row]["LoaiDG"].ToString();
-                loaiDG = cboLoaiDG.Text;
-                txtGhiChu.Text = myTable.Rows[row]["GhiChu"].ToString();
-                ghiChu = txtGhiChu.Text;
-                txtTenTK.Text = myTable.Rows[row]["TenTaiKhoanDG"].ToString();
-                tenTK = txtTenTK.Text;
-                txtMK.Text = myTable.Rows[row]["MatKhauDG"].ToString();
-                mK = txtMK.Text;
-                //dtmNgLapThe.Text = myTable.Rows[row]["NgLapThe"].ToString();
-                //NgLapThe = dtmNgLapThe.Text;
-            }
-            catch
-            {
-
-            }
+           
         }
 
         // Phương thức tăng mã DG tự động
-        public string setMaDG()
-        {
-            //string cauTruyVan = "select * from tblDocGia";
-            //dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);
-            //dataGridViewDSDocGia.AutoGenerateColumns = false;
-            //myConnection.Close();
-            //string maTuDong = "";
-            //if (myTable.Rows.Count <= 0)
-            //{
-            //    maTuDong = "DocGia001";
-            //}
-            //else
-            //{
-            //    int k;
-            //    maTuDong = "DocGia";
-            //    k = Convert.ToInt32(myTable.Rows[myTable.Rows.Count - 1][0].ToString().Substring(2, 3));
-            //    k = k + 1;
-            //    if (k < 10)
-            //    {
-            //        maTuDong = maTuDong + "00";
-            //    }
-            //    else if (k < 100)
-            //    {
-            //        maTuDong = maTuDong + "0";
-            //    }
-            //    maTuDong = maTuDong + k.ToString();
-            //}
-            //return maTuDong;
-            return "";
-        }
+       
 
         // Phương thức thêm ĐG
         public int xuly;
-        private void btnThem_Click(object sender, EventArgs e)
+        public void setNull()
         {
-            setControls(true);
-            txtMaDG.Text = setMaDG();
+            txtMaDG.Text = "";
             txtTenDG.Text = "";
             txtEmail.Text = "";
             txtDiaChi.Text = "";
             cboGioiTinh.Text = "";
             dtmNgaySinh.Text = "";
-            cboLoaiDG.Text = "";
             txtGhiChu.Text = "";
-            txtTenTK.Text = txtMaDG.Text;
-            txtTenTK.Enabled = false;
+            txtTenTK.Text = "";
             txtMK.Text = "";
-            //dtmNgLapThe.Text = "";
+        }
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            setControls(true);
+            setNull();
             txtTenDG.Focus();
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -168,7 +109,6 @@ namespace QuanLyThuVien
             btnLuu.Enabled = true;
             btnHuy.Enabled = true;
             xuly = 0;
-            dataGridViewDSDocGia.Enabled = false;
         }
 
         // Phương thức sửa thông tin độc giả
@@ -181,16 +121,12 @@ namespace QuanLyThuVien
             btnHuy.Enabled = true;
             btnThem.Enabled = false;
             txtTenDG.Focus();
-            //dataGridViewDSDocGia.Enabled = false;
-            //txtTenTK.Enabled = false;
             xuly = 1;
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
             suaDG();
         }
-
-   
 
         private void dataGridViewDSDocGia_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -200,21 +136,9 @@ namespace QuanLyThuVien
             dtmNgaySinh.Text = dataGridViewDSDocGia.CurrentRow.Cells[3].Value.ToString();
             txtEmail.Text = dataGridViewDSDocGia.CurrentRow.Cells[4].Value.ToString();
             txtDiaChi.Text = dataGridViewDSDocGia.CurrentRow.Cells[5].Value.ToString();
-            cboLoaiDG.Text = dataGridViewDSDocGia.CurrentRow.Cells[6].Value.ToString();
-            txtGhiChu.Text = dataGridViewDSDocGia.CurrentRow.Cells[7].Value.ToString();
-            txtTenTK.Text = dataGridViewDSDocGia.CurrentRow.Cells[8].Value.ToString();
-            txtMK.Text = dataGridViewDSDocGia.CurrentRow.Cells[9].Value.ToString();
-            //if (dataGridViewDSDocGia.CurrentRow.Cells[10].Value != null && dataGridViewDSDocGia.CurrentRow.Cells[10].Value != "")
-            //{
-            //    dtNgayTaoTher.Value = Convert.ToDateTime(dataGridViewDSDocGia.CurrentRow.Cells[10].Value);
-            //}
-            //if (dataGridViewDSDocGia.CurrentRow.Cells[11].Value != null && dataGridViewDSDocGia.CurrentRow.Cells[11].Value != "")
-            //{
-            //    dtNgayHetHan.Value = Convert.ToDateTime(dataGridViewDSDocGia.CurrentRow.Cells[11].Value);
-            //}
-            //dtmNgLapThe.Text = dataGridViewDSDocGia.CurrentRow.Cells[10].Value.ToString();
-
-
+            txtGhiChu.Text = dataGridViewDSDocGia.CurrentRow.Cells[6].Value.ToString();
+            txtTenTK.Text = dataGridViewDSDocGia.CurrentRow.Cells[7].Value.ToString();
+            txtMK.Text = dataGridViewDSDocGia.CurrentRow.Cells[8].Value.ToString();
         }
 
         private void dataGridViewDSDocGia_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -231,50 +155,46 @@ namespace QuanLyThuVien
             {
                 try
                 {
-                    string xoadongsql = "delete from tblDocGia where MaDG='" + txtMaDG.Text + "'";
-                    ketnoi(xoadongsql);
-                    myCommand.ExecuteNonQuery();
-                    MessageBox.Show("Xóa thành công.", "Thông Báo");
-                    //btnXoa.Enabled = false;
+                    string query = "delete from tblDocGia where MaDG='" + txtMaDG.Text + "'";
+                    var status = common.thucthidulieu(query);
+                    if (status)
+                    {
+                        MessageBox.Show("Xóa thành công.", "Thông Báo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa thất bại.", "Thông Báo");
+                    }
+                    LoadData();
+                    setNull();
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Xóa thất bại.\nĐộc Giả này đang mượn sách.", "Thông Báo");
                 }
             }
-            string cauTruyVan = "select * from tblDocGia";
-            dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);
-            dataGridViewDSDocGia.AutoGenerateColumns = false;
-            myConnection.Close();
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             xoaDG();
         }
-
         // Lưu
         private void themDG()
         {
             try
             {
                 string madocgia = common.tangMaTuDong("tblDocGia", "DG");
-                string themdongsql = "insert into tblDocGia(MaDG,TenDG,GioiTinhDG,NgaySinhDG,EmailDG,DiaChiDG,LoaiDG,GhiChu,TenTaiKhoanDG,MatKhauDG) values ('" + madocgia + "'," +
+                string themdongsql = "insert into tblDocGia(MaDG,TenDG,GioiTinhDG,NgaySinhDG,EmailDG,DiaChiDG,GhiChu,TenTaiKhoanDG,MatKhauDG) values ('" + madocgia + "'," +
                     "N'" + txtTenDG.Text + "'," +
                     "N'" + cboGioiTinh.Text + "'," +
                     "'" + dtmNgaySinh.Value.ToString("yyyy-MM-dd") + "'," +
                     "'" + txtEmail.Text + "'," +
                     "N'" + txtDiaChi.Text + "'," +
-                    "N'" + cboLoaiDG.Text + "'," +
                     "N'" + txtGhiChu.Text + "'," +
                     "'" + txtTenTK.Text + "'," +
                     "'" + txtMK.Text + "')";
-                ketnoi(themdongsql);
+                common.thucthidulieu(themdongsql);
                 MessageBox.Show("Thêm thành công.", "Thông Báo");
-                string mathe = common.tangMaTuDong("tblTheThuVien","thethu");
-                string query = "insert into tblTheThuVien(MaThe,MaDocGia,NgayBatDau,NgayHeHan) values('"+mathe+"','"+ madocgia + "','"+dtNgayTaoTher.Value+"','"+dtNgayHetHan.Value+"')";
-                common.thucthidulieu(query);
-                myCommand.ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -337,17 +257,8 @@ namespace QuanLyThuVien
             {
                 errGT.Clear();
             }
-
-            if (cboLoaiDG.Text == "")
-            {
-                errLoaiDG.SetError(cboLoaiDG, "Vui lòng nhập Loại ĐG");
-            }
-            else
-            {
-                errLoaiDG.Clear();
-            }
-                        
-            if(txtMaDG.Text.Length>0 && txtTenDG.Text.Length>0 && txtDiaChi.Text.Length>0  && dtmNgaySinh.Text.Length>0 && cboGioiTinh.Text.Length>0 && txtTenTK.Text.Length>0 && txtMK.Text.Length>0 && cboLoaiDG.Text.Length>0 )
+                    
+            if(txtTenDG.Text.Length>0 && txtDiaChi.Text.Length>0  && dtmNgaySinh.Text.Length>0 && cboGioiTinh.Text.Length>0 && txtTenTK.Text.Length>0 && txtMK.Text.Length>0)
             {              
                 int tuoiMin = 18;
                 int tuoiMax = 30;// Convert.ToInt32(myCommand.ExecuteScalar());
@@ -370,26 +281,22 @@ namespace QuanLyThuVien
                 {
                     try
                     {
-                        MessageBox.Show("Sửa thành công.", "Thông Báo");
+                        UpdataDatabase();
+                       
                     }
                     catch
                     {
                         MessageBox.Show("Sửa thất bại.\nVui lòng kiểm tra lại dữ liệu.", "Thông Báo");
                     }
                 }
-                
-                string cauTruyVan = "select * from tblDocGia";
-                dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);
-                txtMaDG.Text = setMaDG();
-                //dataGridViewDSDocGia.AutoGenerateColumns = false;
-                myConnection.Close();
                 btnLuu.Enabled=false;
                 btnHuy.Enabled=false;
                 btnThem.Enabled=true;
                 btnSua.Enabled=true;
                 btnXoa.Enabled=true;
                 setControls(false);
-                dataGridViewDSDocGia.Enabled = true;
+                LoadData();
+                setNull();
             }
             else
             {
@@ -406,28 +313,36 @@ namespace QuanLyThuVien
                     txtMK.Focus();
             }
         }
+        public void UpdataDatabase()
+        {
+            //txtMaTheLoai.ReadOnly = true;
+            string qry = "Update tblDocGia set " +
+                "TenDG =N'" + txtTenDG.Text + "', " +
+                "GioiTinhDG =N'" + cboGioiTinh.Text + "', " +
+                "NgaySinhDG ='" + dtmNgaySinh.Value.ToString("yyyy-MM-dd") + "', " +
+                "EmailDG ='" + txtEmail.Text + "', " +
+                "DiaChiDG =N'" + txtDiaChi.Text + "', " +
+                "GhiChu =N'" + txtGhiChu.Text + "', " +
+                "TenTaiKhoanDG ='" + txtTenTK.Text + "', " +
+                "MatKhauDG ='" + txtMK.Text + "' " +
+                " Where MaDG='" + txtMaDG.Text + "'";
+            var status = common.thucthidulieu(qry);
+            if (status)
+            {
+                MessageBox.Show("Sửa thành công.");
+            }
+            else
+            {
+                MessageBox.Show("Sửa không thành công.");
+            }
+        }
 
         // Phương thức nút hủy
         private void btnHuy_Click(object sender, EventArgs e)
-        {
-            txtMaDG.Text = maDG;
-            txtTenDG.Text = tenDG;
-            txtEmail.Text = sdtDG;
-            txtDiaChi.Text = diaChiDG;
-            cboGioiTinh.Text = gioiTinhDG;
-            dtmNgaySinh.Text = ngaySinhDG;
-            cboLoaiDG.Text = loaiDG;
-            txtGhiChu.Text = ghiChu;
-            txtTenTK.Text = tenTK;
-            txtMK.Text = mK;
-            //dtmNgLapThe.Text = NgLapThe;
-            btnLuu.Enabled = false;
-            btnHuy.Enabled = false;
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            setControls(false);
-            dataGridViewDSDocGia.Enabled = true;
+        {           
+            setControls(true);
+            LoadData();
+            setNull();
             errMK.Clear();
             errEmail.Clear();
             errTenTK.Clear();
@@ -445,46 +360,25 @@ namespace QuanLyThuVien
 
         // Tìm kiếm 
         private void txtNDTimKiem_TextChanged(object sender, EventArgs e)
-        {
-            btnThem.Enabled = false;
-            //btnSua.Enabled = false;
+        {            
             if (radMaDG.Checked)
             {
                 string timkiem = "select * from tblDocGia where MaDG like '%" + txtNDTimKiem.Text + "%'";
-                ketnoi(timkiem);
-                myCommand.ExecuteNonQuery();
-                dataGridViewDSDocGia.DataSource = ketnoi(timkiem);
-                dataGridViewDSDocGia.AutoGenerateColumns = false;
-                myConnection.Close();
+                LoadData(timkiem);
             }
             else if (radTenDG.Checked)
             {
                 string timkiem = "select * from tblDocGia where TenDG like N'%" + txtNDTimKiem.Text + "%'";
-                ketnoi(timkiem);
-                myCommand.ExecuteNonQuery();
-                dataGridViewDSDocGia.DataSource = ketnoi(timkiem);
-                dataGridViewDSDocGia.AutoGenerateColumns = false;
-                myConnection.Close();
+                LoadData(timkiem);
             }
         }
 
         // Phương thức nút Load DS
         private void btnLoadDS_Click(object sender, EventArgs e)
         {
-            lblNhapTenDG.Text = "";
-            lblNhapNgaySinh.Text = "";
-            lblNhapGioiTinh.Text = "";
-            lblNhapSDT.Text = "";
-            lblNhapDiaChi.Text = "";
+            setNull();
             setControls(false);
-            txtNDTimKiem.Text = "";
-            string cauTruyVan = "select * from tblDocGia";
-            dataGridViewDSDocGia.DataSource = ketnoi(cauTruyVan);
-            dataGridViewDSDocGia.AutoGenerateColumns = false;
-            myConnection.Close();
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            LoadData();
         }
 
         private void txtMaDG_TextChanged(object sender, EventArgs e)

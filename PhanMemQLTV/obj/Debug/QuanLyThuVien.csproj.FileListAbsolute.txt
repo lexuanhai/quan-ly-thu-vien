@@ -1,20 +1,3 @@
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe.config
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.pdb
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.AssemblyReference.cache
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmDangNhap.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmDocGia.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmGiaoDienChinh.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmQLPhieuMuon.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmQLTheLoai.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmQLDocGia.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmQLMuonTra.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.frmQLSach.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.Properties.Resources.resources
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.GenerateResource.cache
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.exe
-C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.pdb
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe.config
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.pdb
@@ -32,3 +15,20 @@ F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.Genera
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.exe
 F:\Hoc Tap\C#\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.pdb
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe.config
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.pdb
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.AssemblyReference.cache
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmDangNhap.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmDocGia.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmGiaoDienChinh.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLPhieuMuon.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLTheLoai.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLDocGia.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLMuonTra.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLSach.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.Properties.Resources.resources
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.GenerateResource.cache
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.exe
+C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.pdb

@@ -46,9 +46,6 @@ namespace QuanLyThuVien
                     dataGVTheLoai.Rows[n].Cells[0].Value = dr["MaTheLoai"].ToString();
                     dataGVTheLoai.Rows[n].Cells[1].Value = dr["TenTheLoai"].ToString();
                     dataGVTheLoai.Rows[n].Cells[2].Value = dr["GhiChu"].ToString();
-                    //dataGVTheLoai.Rows[n].Cells[3].Value = dr["Email"].ToString();
-                    //dataGVTheLoai.Rows[n].Cells[4].Value = dr["Website"].ToString();
-                    //dataGVTheLoai.Rows[n].Cells[5].Value = dr["DiaChi"].ToString();
                 }
             }
         }
@@ -75,39 +72,6 @@ namespace QuanLyThuVien
             txtTenTheLoai.Text = model.TenTheLoai;
             txtGhiChu.Text = model.GhiChu;
         }
-
-        // Phương thức tăng mã DG tự động
-        public string setMaDG()
-        {
-            //string cauTruyVan = "select * from tblDocGia";
-            //dataGVNSX.DataSource = ketnoi(cauTruyVan);
-            //dataGVNSX.AutoGenerateColumns = false;
-            //myConnection.Close();
-            //string maTuDong = "";
-            //if (myTable.Rows.Count <= 0)
-            //{
-            //    maTuDong = "DG001";
-            //}
-            //else
-            //{
-            //    int k;
-            //    maTuDong = "DG";
-            //    k = Convert.ToInt32(myTable.Rows[myTable.Rows.Count - 1][0].ToString().Substring(2, 3));
-            //    k = k + 1;
-            //    if (k < 10)
-            //    {
-            //        maTuDong = maTuDong + "00";
-            //    }
-            //    else if (k < 100)
-            //    {
-            //        maTuDong = maTuDong + "0";
-            //    }
-            //    maTuDong = maTuDong + k.ToString();
-            //}
-            //return maTuDong;
-            return "";
-        }
-
         
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -138,60 +102,9 @@ namespace QuanLyThuVien
         private void btnSua_Click(object sender, EventArgs e)
         {
             suaDG();
-            //txtMaTheLoai.Enabled = false;
         }
 
-        //private void dataGridViewDSDocGia_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    txtMaTheLoai.Text = dataGVTheLoai.CurrentRow.Cells[0].Value.ToString();
-        //    txtTenTheLoai.Text = dataGVTheLoai.CurrentRow.Cells[1].Value.ToString();            
-        //    txtGhiChu.Text = dataGVTheLoai.CurrentRow.Cells[4].Value.ToString();
-        //    txtDiaChi.Text = dataGVTheLoai.CurrentRow.Cells[5].Value.ToString();          
-        //    txtSoDienThoai.Text = dataGVTheLoai.CurrentRow.Cells[8].Value.ToString();         
-        //}
-
-        //private void dataGVNSX_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    foreach (DataGridViewCell cell in dataGVTheLoai.SelectedCells)
-        //    {
-        //        //cell.RowIndex
-
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdMaNSX"].Value != null)
-        //        {
-        //            setControls(false);
-        //            txtMaTheLoai.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdMaNSX"].Value.ToString();                    
-        //        }
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdTen"].Value != null)
-        //        {
-        //            txtTenTheLoai.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdTen"].Value.ToString();
-        //        }
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdSDT"].Value != null)
-        //        {
-        //            txtSoDienThoai.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdSDT"].Value.ToString();
-        //        }
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdEmail"].Value != null)
-        //        {
-        //            txtGhiChu.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdEmail"].Value.ToString();
-        //        }
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdWebsite"].Value != null)
-        //        {
-        //            txtWebsite.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdWebsite"].Value.ToString();
-        //        }
-        //        if (dataGVTheLoai.Rows[cell.RowIndex].Cells["tdDiaChi"].Value != null)
-        //        {
-        //            txtDiaChi.Text = dataGVTheLoai.Rows[cell.RowIndex].Cells["tdDiaChi"].Value.ToString();
-        //        }               
-        //    }
-        //}
-
-        //private void frmQLNhaXuatBan_Load(object sender, EventArgs e)
-        //{
-        //    LoadData();
-        //    btnLuu.Enabled = false;
-        //    btnHuy.Enabled = false;
-        //}
-
-        // Phương thức xóa độc giả
+        // Phương thức xóa 
         private void Xoa()
         {
             if (!string.IsNullOrEmpty(txtMaTheLoai.Text))
@@ -233,24 +146,7 @@ namespace QuanLyThuVien
         {
             Xoa();
         }
-        //public bool Exist(string ma)
-        //{
-        //    if (!string.IsNullOrEmpty(ma))
-        //    {
-
-        //        //string query = "select * from tblTheLoai where IsDeteled = 0 and MaTheLoai ='" + ma +"'";
-        //        string query = "DELETE FROM tblTheLoai WHERE MaTheLoai='" + ma + "'";
-
-        //        DataTable dt = common.docdulieu(query);
-
-        //        if (dt != null && dt.Rows.Count > 0)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
+        
         // Lưu
         private void ThemMoi()
         {

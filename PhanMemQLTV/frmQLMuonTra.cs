@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using QuanLyThuVien.Model;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace QuanLyThuVien
 {
@@ -560,7 +561,17 @@ namespace QuanLyThuVien
             try
             {
                 var model = GetValueChiTietPM();
+                DataTable dt;
+                string query = "select * from ChiTietPM where MaPhieuMuon='" + model .MaPhieuMuon+ "' and MaSach='"+model.MaSach+ "' and TinhTrang =N'Đang Mượn'";
+                //string query = "select * from tblSach where MaSach='" + masach + "'";
                 var common = new Common();
+                dt = common.docdulieu(query);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("Sách đã mượn vui lòng chọn sách khác.");
+                    return;
+                }
+ 
                 string ma = common.tangMaTuDong("ChiTietPM", "CTPM");
                 var qry = "Insert into ChiTietPM([MaCTPT] ," +
                     "[MaSach] ," +
@@ -1756,7 +1767,7 @@ namespace QuanLyThuVien
             {
 
                 if (xuly == 0)
-                {
+                {                   
                     ThemMoiChiTietPhieuMuon();
                 }
                 else if (xuly == 1)

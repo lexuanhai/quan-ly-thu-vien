@@ -37,8 +37,8 @@
             this.quảnLýSáchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýThểLoạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýMượnTrảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quanlytra = new System.Windows.Forms.ToolStripMenuItem();
+            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHeThong.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             this.thoátToolStripMenuItem});
             this.mnuHeThong.Location = new System.Drawing.Point(143, 52);
             this.mnuHeThong.Name = "mnuHeThong";
-            this.mnuHeThong.Size = new System.Drawing.Size(768, 30);
+            this.mnuHeThong.Size = new System.Drawing.Size(618, 30);
             this.mnuHeThong.TabIndex = 0;
             this.mnuHeThong.Text = "menuStrip1";
             // 
@@ -83,7 +83,7 @@
             // quanlydocgiaToolStripMenuItem
             // 
             this.quanlydocgiaToolStripMenuItem.Name = "quanlydocgiaToolStripMenuItem";
-            this.quanlydocgiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.quanlydocgiaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.quanlydocgiaToolStripMenuItem.Text = "Độc Giả";
             this.quanlydocgiaToolStripMenuItem.Click += new System.EventHandler(this.quanlydocgiaToolStripMenuItem_Click);
             // 
@@ -117,18 +117,18 @@
             this.quảnLýMượnTrảToolStripMenuItem.Text = "Quản lý Mượn";
             this.quảnLýMượnTrảToolStripMenuItem.Click += new System.EventHandler(this.quảnLýMượnTrảToolStripMenuItem_Click);
             // 
+            // quanlytra
+            // 
+            this.quanlytra.Name = "quanlytra";
+            this.quanlytra.Size = new System.Drawing.Size(118, 26);
+            this.quanlytra.Text = "Quản lý Trả";
+            // 
             // thoátToolStripMenuItem
             // 
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
             this.thoátToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click_1);
-            // 
-            // quanlytra
-            // 
-            this.quanlytra.Name = "quanlytra";
-            this.quanlytra.Size = new System.Drawing.Size(118, 26);
-            this.quanlytra.Text = "Quản lý Trả";
             // 
             // frmGiaoDienChinh
             // 

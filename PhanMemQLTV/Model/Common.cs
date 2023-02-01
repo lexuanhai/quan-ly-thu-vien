@@ -11,7 +11,7 @@ namespace QuanLyThuVien.Model
 {
     public class Common
     {
-        static string chuoiKetNoi = ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
+       public static string chuoiKetNoi = ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
         SqlConnection con = new SqlConnection(chuoiKetNoi);
         public void moketnoi()
         {
@@ -49,7 +49,7 @@ namespace QuanLyThuVien.Model
             moketnoi();
             DataTable da = new DataTable();
             try
-            {
+            {                
                 SqlCommand sc = new SqlCommand(cmd, con);
                 SqlDataAdapter sda = new SqlDataAdapter(sc);
                 sda.Fill(da);

@@ -23,73 +23,13 @@ namespace QuanLyThuVien
             InitializeComponent();
         }
         public int xuly;
-        Common common = new Common();
-        //string chuoiKetNoi = ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
-        //private SqlConnection myConnection;
-        //private SqlDataAdapter myDataAdapter;
-        //private DataTable myTable;
-        //private SqlCommand myCommand;
-
-        //public int xuly;
-        //Common common = new Common();
-        //public void LoadData(string query = "")
-        //{
-        //    DataTable dt;
-        //    if (!string.IsNullOrEmpty(query))
-        //    {
-        //        dt = common.docdulieu(query);
-        //    }
-        //    else
-        //    {
-        //        dt = common.docdulieu("select * from tblTheLoai Where IsDeteled != 1");
-        //    }
-        //    dataGridViewDSSach.Rows.Clear();
-        //    if (dt != null && dt.Rows.Count > 0)
-        //    {
-        //        dataGVTheLoai.Rows.Clear();
-        //        foreach (DataRow dr in dt.Rows)
-        //        {
-        //            int n = dataGVTheLoai.Rows.Add();
-        //            dataGVTheLoai.Rows[n].Cells[0].Value = dr["MaTheLoai"].ToString();
-        //            dataGVTheLoai.Rows[n].Cells[1].Value = dr["TenTheLoai"].ToString();
-        //            dataGVTheLoai.Rows[n].Cells[2].Value = dr["GhiChu"].ToString();
-        //            //dataGVTheLoai.Rows[n].Cells[3].Value = dr["Email"].ToString();
-        //            //dataGVTheLoai.Rows[n].Cells[4].Value = dr["Website"].ToString();
-        //            //dataGVTheLoai.Rows[n].Cells[5].Value = dr["DiaChi"].ToString();
-        //        }
-        //    }
-        //}
-
-        //// Phương thức thiết lập Controls
-        //private void setControls(bool edit)
-        //{
-        //    txtMaTheLoai.Enabled = edit;
-        //    txtTenTheLoai.Enabled = edit;
-        //    txtGhiChu.Enabled = edit;
-        //}
-
-        //public TheLoai GetValue()
-        //{
-        //    var model = new TheLoai();
-        //    model.MaTheLoai = txtMaTheLoai.Text;
-        //    model.TenTheLoai = txtTenTheLoai.Text;
-        //    model.GhiChu = txtGhiChu.Text;
-        //    return model;
-        //}
-        //public void SetValue(TheLoai model)
-        //{
-        //    txtMaTheLoai.Text = model.MaTheLoai;
-        //    txtTenTheLoai.Text = model.TenTheLoai;
-        //    txtGhiChu.Text = model.GhiChu;
-        //}
-
+        Common common = new Common();       
         // load combox
         public void Loadcmb()
         {
             CmbTacGia();
             CmbNXB();
             CmbTheLoai();
-            CmbViTri();
         }
         
         public void CmbTacGia()
@@ -101,32 +41,7 @@ namespace QuanLyThuVien
             cmbTacGia.DisplayMember = "TenTG";
             cmbTacGia.ValueMember = "MaTacGia";
             cmbTacGia.DataSource = dt;
-        }
-        public void CmbViTri()
-        {
-
-            DataTable dt;
-            string query = "select * from tblViTri";
-            dt = common.docdulieu(query);
-            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
-            {
-                //var lstViTri = new List<ViTri>();
-                //foreach (DataRow item in dt.Rows)
-                //{
-                //    var viTri = new ViTri();
-                //    viTri.MaViTri = item["MaViTri"].ToString();
-                //    viTri.Khu = item["Khu"].ToString();
-                //    viTri.Ke = item["Ke"].ToString();
-                //    viTri.Ngan = item["Ngan"].ToString();
-                //    viTri.Name = viTri.Khu + " - " + viTri.Ke + " - "+ viTri.Ngan;
-                //    lstViTri.Add(viTri);
-                //}
-                //cmbViTri.DisplayMember = "Name";
-                //cmbViTri.ValueMember = "MaViTri";
-                //cmbViTri.DataSource = lstViTri;
-            }
-           
-        }
+        }      
         public void CmbNXB()
         {
 
@@ -171,10 +86,14 @@ namespace QuanLyThuVien
             string query = "select *, sach.TinhTrang as TinhTrangSach,sach.Ghichu as GhiChiSach from tblSach sach " +
                 "inner join tblTheLoai theloai on theloai.MaTheLoai = sach.MaTheLoai " +
                 "inner join tblNhaXuatBan nxb on nxb.MaNXB = sach.MaNXB " +
-                "inner join tblTacGia tacgia on tacgia.MaTacGia = sach.MaTacGia";
+                "inner join tblTacGia tacgia on tacgia.MaTacGia = sach.MaTacGia ";
             if (!string.IsNullOrEmpty(qry))
             {
                 query += qry;
+            }
+            else
+            {
+                query += " order by MaSach desc";
             }
            
             dt = common.docdulieu(query);
@@ -249,7 +168,6 @@ namespace QuanLyThuVien
             cmbTacGia.Enabled = edit;
             cmbTheLoai.Enabled = edit;
             cmbNXB.Enabled = edit;
-            cmbViTri.Enabled = edit;
             txtTenSach.Enabled = edit;
 
             txtGhiChu.Enabled = edit;
@@ -263,74 +181,15 @@ namespace QuanLyThuVien
             txtTriGia.Text = "";
             txtGhiChu.Text = "";
         }
-        public void search()
-        {
-            //btnThem.Enabled = false;
-            //if (radMaDG.Checked)
-            //{
-            //    string timkiem = "select * from tblTheLoai where MaTheLoai like '%" + txtNDTimKiem.Text + "%'";
-            //    LoadData(timkiem);
-            //}
-            //else if (radTenDG.Checked)
-            //{
-            //    string timkiem = "select * from tblTheLoai where TenTheLoai like N'%" + txtNDTimKiem.Text + "%'";
-            //    LoadData(timkiem);
-            //}
-        }
-
 
         private void frmQLSach_Load(object sender, EventArgs e)
         {
             Loadcmb();
             LoadData();
-            setControls(false);
-            //string cauTruyVan = "select * from tblSach";
-            ////dataGridViewDSSach.DataSource = ketnoi(cauTruyVan);
-            //dataGridViewDSSach.AutoGenerateColumns = false;
-            ////myConnection.Close();
-            //setControls(false);
-            //dataGridViewDSSach.Enabled = true;
-            //btnLuu.Enabled = false;
-            //btnHuy.Enabled = false;
-            //txtMaSach.Enabled = false;   
+            setControls(false); 
         }
 
-        //public string NgNhapSach, maSach, tenSach, tacGia, TheLoai, nXB, namXB, slNhap, TriGia, tinhTrang, ghiChu;
-        //private void dataGridViewDSSach_RowEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        //int row = e.RowIndex;
-        //        //dtmNgNhapSach.Text = myTable.Rows[row]["NgNhapSach"].ToString();
-        //        //NgNhapSach = dtmNgNhapSach.Text;
-        //        //txtMaSach.Text = myTable.Rows[row]["MaSach"].ToString();
-        //        //maSach = txtMaSach.Text;
-        //        //txtTenSach.Text = myTable.Rows[row]["TenSach"].ToString();
-        //        //tenSach = txtTenSach.Text;
-        //        //txtTheLoai.Text = myTable.Rows[row]["TheLoai"].ToString();
-        //        //TheLoai = txtTheLoai.Text;
-        //        //txtTacGia.Text = myTable.Rows[row]["TacGia"].ToString();
-        //        //tacGia = txtTacGia.Text;
-        //        //txtNXB.Text = myTable.Rows[row]["NXB"].ToString();
-        //        //nXB = txtNXB.Text;
-        //        //txtNamXB.Text = myTable.Rows[row]["NamXB"].ToString();
-        //        //namXB = txtNamXB.Text;
-                
-        //        //txtSLNhap.Text = myTable.Rows[row]["SLNhap"].ToString();
-        //        //slNhap = txtSLNhap.Text;
-        //        //txtTriGia.Text = myTable.Rows[row]["TriGia"].ToString();
-        //        //TriGia = txtTriGia.Text;
-        //        //cboTinhTrang.Text = myTable.Rows[row]["TinhTrang"].ToString();
-        //        //tinhTrang = cboTinhTrang.Text;
-        //        //txtGhiChu.Text = myTable.Rows[row]["GhiChu"].ToString();
-        //        //ghiChu = txtGhiChu.Text;
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-
+        
         
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -346,27 +205,6 @@ namespace QuanLyThuVien
             btnHuy.Enabled = true;
             xuly = 0;
 
-            //dtmNgNhapSach.Text = "";
-            //txtMaSach.Text = tangMaTuDong();
-            //txtTenSach.Text = "";
-            ////txtTheLoai.Text = "";
-            ////txtTacGia.Text = "";
-            ////txtNXB.Text = "";
-            //txtSLNhap.Text = "";
-            //txtNamXB.Text = "";
-            //txtTriGia.Text = "";
-            //cboTinhTrang.Text = "";
-            //txtGhiChu.Text = "";
-
-            //setControls(true);
-            //dataGridViewDSSach.Enabled = false;
-            //txtTenSach.Focus();
-            //btnSua.Enabled = false;
-            //btnXoa.Enabled = false;
-            //btnThem.Enabled = false;
-            //btnLuu.Enabled = true;
-            //btnHuy.Enabled = true;
-            //xuly = 0;
         }
         private void suaDG()
         {
@@ -384,24 +222,7 @@ namespace QuanLyThuVien
             xuly = 1;
             suaDG();
             txtMaSach.Enabled = false;
-            //cboTinhTrang.Text = "Mới";
-            //setControls(true);
-            //btnSua.Enabled = false;
-            //btnLuu.Enabled = true;
-            //btnHuy.Enabled = true;
-            //btnXoa.Enabled = false;
-            //btnThem.Enabled = false;
-            ////dataGridViewDSSach.Enabled = false;
-            //txtTenSach.Focus();
-            //xuly = 1;
-            //lblNhapCD.Text = "";
-            //lblNhapTriGia.Text = "";
-            //lblNhapSLCon.Text = "";
-            //lblNhapSLNhap.Text = "";
-            //lblNhapTenNXB.Text = "";
-            //lblNhapTenSach.Text = "";
-            //lblNhapTenTG.Text = "";
-            //lblNhapTinhTrang.Text = "";
+          
         }
 
         private void xoaSach()
@@ -463,19 +284,10 @@ namespace QuanLyThuVien
         }
 
         private void dataGridViewDSSach_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //txtMaSach.Text  =  dataGridViewDSSach.CurrentRow.Cells[0].Value.ToString();
-            //dtmNgNhapSach.Text = dataGridViewDSSach.CurrentRow.Cells[1].Value.ToString();
-            //txtTenSach.Text = dataGridViewDSSach.CurrentRow.Cells[2].Value.ToString();
-            ////txtTheLoai.Text = dataGridViewDSSach.CurrentRow.Cells[3].Value.ToString();
-            ////txtTacGia.Text = dataGridViewDSSach.CurrentRow.Cells[4].Value.ToString();
-            ////txtNXB.Text = dataGridViewDSSach.CurrentRow.Cells[5].Value.ToString();
-            //txtNamXB.Text = dataGridViewDSSach.CurrentRow.Cells[6].Value.ToString();
-            //txtSLNhap.Text = dataGridViewDSSach.CurrentRow.Cells[8].Value.ToString();
-            //txtTriGia.Text = dataGridViewDSSach.CurrentRow.Cells[7].Value.ToString();
-            //cboTinhTrang.Text = dataGridViewDSSach.CurrentRow.Cells[9].Value.ToString();
-            //txtGhiChu.Text = dataGridViewDSSach.CurrentRow.Cells[10].Value.ToString();
-            var sach = new Sach(); 
+        {          
+            var sach = new Sach();
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
             foreach (DataGridViewCell cell in dataGridViewDSSach.SelectedCells)
             {
                 //cell.RowIndex
@@ -536,138 +348,7 @@ namespace QuanLyThuVien
             {
                 errTenSach.Clear();
             }
-            //if (txtTheLoai.Text == "")
-            //{
-            //    errCD.SetError(txtTheLoai, "Vui lòng nhập Chủ Đề");
-            //}
-            //else
-            //{
-            //    errCD.Clear();
-            //}
-            //if (txtTacGia.Text == "")
-            //{
-            //    errTG.SetError(txtTacGia, "Vui lòng nhập Tác Giả");
-            //}
-            //else
-            //{
-            //    errTG.Clear();
-            //}
-            //if (txtNXB.Text == "")
-            //{
-            //    errNXB.SetError(txtNXB, "Vui lòng nhập NXB");
-            //}
-            //else
-            //{
-            //    errNXB.Clear();
-            //}
-            //if (txtNamXB.Text == "")
-            //{
-            //    errNamXB.SetError(txtNamXB, "Vui lòng nhập Năm XB");
-            //}
-            //else
-            //{
-            //    errNXB.Clear();
-            //}
-            //if (txtSLNhap.Text == "")
-            //{
-            //    errSLNhap.SetError(txtSLNhap, "Vui lòng nhập SL");
-            //}
-            //else
-            //{
-            //    errSLNhap.Clear();
-            //}
-
-            //if (txtTriGia.Text == "")
-            //{
-            //    errTriGia.SetError(txtTriGia, "Vui lòng nhập Đơn Giá");
-            //}
-            //else
-            //{
-            //    errTriGia.Clear();
-            //}
-            //if (cboTinhTrang.Text == "")
-            //{
-            //    errTinhTrang.SetError(cboTinhTrang, "Vui lòng nhập Tình Trạng");
-            //}
-            //else
-            //{
-            //    errTinhTrang.Clear();
-            //}
-
-            // string query = "select GiaTri from thamso where TenTS = 'ThoiGianXB'";
-            //// ketnoi(query);
-            // int tgXB = Convert.ToInt32(myCommand.ExecuteScalar());
-
-            // if(DateTime.Now.Year - Convert.ToInt32(txtNamXB.Text) > tgXB)
-            // {
-            //     MessageBox.Show("Năm xuất bản không hợp lệ!");
-            //     return;
-            // }
-
-
-            // int ktSLNhap, ktNamXB, ktTriGia;
-            // bool isNumberSLNhap = int.TryParse(txtSLNhap.Text, out ktSLNhap);
-            // bool isNumberTriGia = int.TryParse(txtTriGia.Text, out ktTriGia);
-            // bool isNumberNamXB = int.TryParse(txtNamXB.Text, out ktNamXB);
-            // if(isNumberSLNhap==false || isNumberTriGia==false || isNumberNamXB==false)
-            // {
-            //     MessageBox.Show("Vui lòng nhập số trong các ô:\nSL Nhập.\nNăm XB.\nĐơn Giá.", "Thông Báo");
-            // }
-            //if (dtmNgNhapSach.Text.Length>0 && txtTenSach.Text.Length > 0 && txtTacGia.Text.Length > 0 && txtNXB.Text.Length > 0 && txtTheLoai.Text.Length > 0 && isNumberSLNhap == true && isNumberTriGia == true && cboTinhTrang.Text.Length > 0 && isNumberNamXB == true)
-            //{
-            //        if (xuly == 0)
-            //        {
-            //            themSach();
-            //        }
-            //        else if (xuly == 1)
-            //        {
-            //            suaSach();
-
-            //        }
-            //        string cauTruyVan = "select * from tblSach";
-            //       // dataGridViewDSSach.DataSource = ketnoi(cauTruyVan);
-            //        dataGridViewDSSach.AutoGenerateColumns = false;
-            //      //  myConnection.Close();
-            //        btnLuu.Enabled = false;
-            //        btnHuy.Enabled = false;
-            //        btnThem.Enabled = true;
-            //        btnSua.Enabled = true;
-            //        btnXoa.Enabled = true;
-            //        setControls(false);
-            //        dataGridViewDSSach.Enabled = true;
-
-            //        errTenSach.Clear();
-            //        errCD.Clear();
-            //        errTG.Clear();
-            //        errNamXB.Clear();
-            //        errNXB.Clear();
-            //        errTriGia.Clear();
-            //        errSLNhap.Clear();
-            //        errTinhTrang.Clear();
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vui lòng nhập đủ thông tin.", "Thông Báo");
-            //    if (txtTenSach.Text.Length == 0)
-            //        txtTenSach.Focus();
-            //    //else if (txtTheLoai.Text.Length == 0)
-            //    //    txtTheLoai.Focus();
-            //    //else if (txtTacGia.Text.Length == 0)
-            //    //    txtTacGia.Focus();
-            //    //else if (txtNXB.Text.Length == 0)
-            //    //    txtNXB.Focus();
-            //    else if (txtNamXB.Text.Length == 0)
-            //        txtNamXB.Focus();
-            //    else if (txtSLNhap.Text.Length == 0)
-            //        txtSLNhap.Focus();
-            //    else if (txtTriGia.Text.Length == 0)
-            //        txtTriGia.Focus();
-            //    else if (cboTinhTrang.Text.Length == 0)
-            //        cboTinhTrang.Focus();
-            //}
-            //
-
+           
             if (xuly == 0)
             {
                 ThemMoi();
@@ -773,21 +454,11 @@ namespace QuanLyThuVien
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            //setControls(false);
-            //dataGridViewDSSach.Enabled = true;
-            //btnLuu.Enabled = false;
-            //btnHuy.Enabled = false;
-            //btnThem.Enabled = true;
-            //btnSua.Enabled = true;
-            //btnXoa.Enabled = true;
+            LoadData();
             SetValueNull();
-            btnLuu.Enabled = false;
-            btnHuy.Enabled = false;
+            setControls(true);
             btnThem.Enabled = true;
             btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            setControls(false);
-
 
             errTenSach.Clear();
             errCD.Clear();
@@ -806,23 +477,9 @@ namespace QuanLyThuVien
 
         private void btnLoadDS_Click(object sender, EventArgs e)
         {
-            lblNhapCD.Text = "";
-            lblNhapTriGia.Text = "";
-            lblNhapSLCon.Text = "";
-            lblNhapSLNhap.Text = "";
-            lblNhapTenNXB.Text = "";
-            lblNhapTenSach.Text = "";
-            lblNhapTenTG.Text = "";
-            lblNhapTinhTrang.Text = "";
+            SetValueNull();
+            LoadData();
             setControls(false);
-            txtNDTimKiem.Text = "";
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            string cauTruyVan = "select * from tblSach";
-           // dataGridViewDSSach.DataSource = ketnoi(cauTruyVan);
-            dataGridViewDSSach.AutoGenerateColumns = false;
-            //myConnection.Close();
         }
         private void timKiemSach()
         {
@@ -830,13 +487,11 @@ namespace QuanLyThuVien
             btnSua.Enabled = false;
             if (radMaSach.Checked)
             {
-                string timkiemMS = " where sach.MaSach ='"+ txtNDTimKiem.Text + "'";
+                string timkiemMS = " where sach.MaSach like '%" + txtNDTimKiem.Text + "%'";
                 LoadData(timkiemMS);
             }
             else if (radTenSach.Checked)
             {
-                //string timkiemTS = "select * from tblSach where TenSach like N'%" + txtNDTimKiem.Text + "%'";
-
                 string timkiemMS = " where sach.TenSach like N'%" + txtNDTimKiem.Text + "%'";
                 LoadData(timkiemMS);
             }
@@ -845,48 +500,12 @@ namespace QuanLyThuVien
                 string timkiemMS = " where tacgia.TenTG like N'%" + txtNDTimKiem.Text + "%'";
                 LoadData(timkiemMS);
                
-            }
-            //else if (radTenCD.Checked)
-            //{
-            //    string timkiemMS = "select * from tblSach where TheLoai like N'%" + txtNDTimKiem.Text + "%'";
-
-            //}
+            }            
         }
         private void txtNDTimKiem_TextChanged(object sender, EventArgs e)
         {
             timKiemSach();
-        }
-        public string tangMaTuDong()
-        {
-            //  string cauTruyVan = "select * from tblSach";
-            ////  dataGridViewDSSach.DataSource = ketnoi(cauTruyVan);
-            //  dataGridViewDSSach.AutoGenerateColumns = false;
-            //  myConnection.Close();
-            //  string maTuDong = "";
-            //  if(myTable.Rows.Count<=0)
-            //  {
-            //      maTuDong = "MS001";
-            //  }
-            //  else
-            //  {
-            //      int k;
-            //      maTuDong = "MS";
-            //      k = Convert.ToInt32(myTable.Rows[myTable.Rows.Count - 1][0].ToString().Substring(2, 3));
-            //      k = k + 1;
-            //      if(k<10)
-            //      {
-            //          maTuDong = maTuDong + "00";
-            //      }
-            //      else if(k<100)
-            //      {
-            //          maTuDong = maTuDong + "0";
-            //      }
-            //      maTuDong = maTuDong + k.ToString();
-            //  }
-            //  return maTuDong;
-            return "";
-        }
-
+        }        
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
