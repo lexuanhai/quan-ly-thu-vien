@@ -1,0 +1,31 @@
+Database Là: QuanLyThuVienDatabase
+Danh sách các bảng: 
++ ChiTietPM
++ tblDocGia
++ tblHSPhieuMuon
++ tblNhaXuatBan
++ tblSach
++ tblTacGia
++ tblTheLoai
++ tblThuThu
+
+Các form xử lý gồm có:
++ frmDangNhap
++ frmDocGia
++ frmGiaoDienChinh
++ frmGiaoDienChinh
++ frmQLMuonTra
++ frmQLPhieuMuon
++ frmQLSach
++ frmQLTheLoai
+
+kết nối dữ liệu:
++ thực chuỗi kết nối ở trong file App.config
+ gồm có tên cơ sở dữ liệu : DESKTOP-DDVHBI0(thay đổi theo name), database là QuanLyThuVienDatabase
+<add name="strConn" connectionString="Data Source=DESKTOP-DDVHBI0;Initial Catalog=QuanLyThuVienDatabase;Integrated Security=True"/>
+
+Xử lý:
+Trong folder Model gồm có class Common và các class khai báo tương tự như những bảng trong sql 
++ class Common gồm có:
+ - thực hiện kết nối gồm có: mở kết nối và đóng kết nối
+ - Thao tác đến cơ sở dữ liệu ở trong hàm thucthidulieu

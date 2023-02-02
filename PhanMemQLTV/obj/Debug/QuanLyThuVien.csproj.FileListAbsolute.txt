@@ -32,3 +32,20 @@ C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.G
 C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
 C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.exe
 C:\hoc-tap\winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.pdb
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe.config
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.exe
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\bin\Debug\PhanMemQLTV.pdb
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.AssemblyReference.cache
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmDangNhap.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmDocGia.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmGiaoDienChinh.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLPhieuMuon.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLTheLoai.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLDocGia.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLMuonTra.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.frmQLSach.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.Properties.Resources.resources
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.GenerateResource.cache
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\QuanLyThuVien.csproj.CoreCompileInputs.cache
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.exe
+F:\Hoc Tap\C#\Winform\quan-ly-thu-vien\PhanMemQLTV\obj\Debug\PhanMemQLTV.pdb

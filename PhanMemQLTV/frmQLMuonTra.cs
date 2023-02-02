@@ -42,24 +42,21 @@ namespace QuanLyThuVien
             txtSoLuong.Enabled = false;
             txtSoLuongCon.Enabled = false;
         }
-        public List<TongSo> GetsoLuongTongSoLuongMuon(string ma)
+        public TongSo GetsoLuongTongSoLuongMuon(string ma)
         {
             DataTable dt;
-            string query = "select sach.SLNhap, pm.SoLuong from tblSach sach inner join ChiTietPM pm on sach.MaSach = pm.MaSach where pm.MaSach = '"+ma+ "' and pm.TinhTrang ='Đang Mượn'";
+            string query = "select sach.SLNhap,SUM(pm.SoLuong) as 'SoluongMuon' from tblSach sach inner join ChiTietPM pm on sach.MaSach = pm.MaSach where pm.MaSach = '" + ma+ "' and pm.TinhTrang =N'Đang Mượn' group by sach.SLNhap";
             dt = common.docdulieu(query);
            
             var lstTongSo = new List<TongSo>();
             if (dt != null && dt.Rows.Count > 0)
             {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    var model = new TongSo();
-                    model.TongSoNhap = dr["SLNhap"] != null ? Convert.ToInt32(dr["SLNhap"]) : 0;
-                    model.TongSoDangMuon = dr["SoLuong"] != null ? Convert.ToInt32(dr["SoLuong"]) : 0;
-                    lstTongSo.Add(model);
-                }
+                var tongso = new TongSo();
+                tongso.TongSoNhap = dt.Rows[0]["SLNhap"] != null ? Convert.ToInt32(dt.Rows[0]["SLNhap"]) : 0;
+                tongso.TongSoDangMuon = dt.Rows[0]["SoluongMuon"] != null ? Convert.ToInt32(dt.Rows[0]["SoluongMuon"]) : 0;
+                return tongso;
             }
-            return lstTongSo;
+            return null;
         }
         public void CmbPhieuMuon()
         {
@@ -1079,87 +1076,16 @@ namespace QuanLyThuVien
 
         private void btnLoadDanhSach0_Click(object sender, EventArgs e)
         {
-            //txtNDTimKiem.Text = "";
-            //btnNhap.Enabled = true;
-            //btnChoMuon0.Enabled = false;
-            //btnHuy0.Enabled = false;
-            ////setControlsMuon(false);
-
-            //string cauTruyVanLoad = "select * from tblHSPhieuMuon";
-            //dataGridViewDSMuon.DataSource = ketnoi(cauTruyVanLoad);
-            //dataGridViewDSMuon.AutoGenerateColumns = false;
-            //myConnection.Close();
             LoadDataChiTietPhieuMuon();
         }
 
-        //public string tangMaTuDong()
-        //{
-        //    string cauTruyVan = "select * from tblHSPhieuMuon";
-        //    dataGridViewDSMuon0.DataSource = ketnoi(cauTruyVan);
-        //    dataGridViewDSMuon0.AutoGenerateColumns = false;
-        //    myConnection.Close();
-
-        //    string maTuDong = "";
-        //    if (myTable.Rows.Count <= 0)
-        //    {
-        //        maTuDong = "MP001";
-        //    }
-        //    else
-        //    {
-        //        int k;
-        //        maTuDong = "MP";
-        //        k = Convert.ToInt32(myTable.Rows[myTable.Rows.Count - 1][0].ToString().Substring(2, 3));
-        //        k = k + 1;
-        //        if (k < 10)
-        //        {
-        //            maTuDong = maTuDong + "00";
-        //        }
-        //        else if (k < 100)
-        //        {
-        //            maTuDong = maTuDong + "0";
-        //        }
-        //        maTuDong = maTuDong + k.ToString();
-        //    }
-        //    return maTuDong;
-        //}
-
+       
         public int xuly;
         public static DateTime today = DateTime.Now;  //Get Date time now on system
         public static DateTime newday = today.AddDays(5);
-        //private void btnThem_Click(object sender, EventArgs e)
-        //{
-            
-            
-        //    layMaDGMuon();
-        //    layMaSachMuon();
-
-        //    btnChoMuon0.Text = "Cho Mượn";
-        //    btnChoMuon0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        //    setControlsMuon(true);
-        //    btnNhap.Enabled = false;
-        //    btnChoMuon0.Enabled = true;
-        //    btnHuy0.Enabled = true;
-        //    btnGiaHan.Enabled = false;
-        //    dataGridViewDSMuon0.Enabled = false;
-
-        //    txtMaPhieu0.Text = tangMaTuDong();
-        //    cboMaDG0.Text = "";
-        //    cboMaSach0.Text = "";
-        //    txtSLMuon0.Text = "";
-        //    dtmNgayMuon0.Text = Convert.ToString(today); ;
-        //    dtmNgayTra0.Text = Convert.ToString(newday);
-        //    //dtmNgayTra0.Text = "";
-        //    txtGhiChu0.Text = "";
-
-        //    lblNhapSLNhap.Text = "";
-        //    xuly = 0;
-        //}
-
-      
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
-        public string ngaymuon, thangmuon, nammuon, ngaytra, thangtra, namtra, ngaydgmuon, ngaydgtra;
-        public int hieumuon,hieutra,catthangmuon,catngaymuon,catngaytra,catthangtra, songaymuon, sothangmuon, sonammuon, songaytra, sothangtra, sonamtra, kq = 1;
+        
+        //public string ngaymuon, thangmuon, nammuon, ngaytra, thangtra, namtra, ngaydgmuon, ngaydgtra;
+        //public int hieumuon,hieutra,catthangmuon,catngaymuon,catngaytra,catthangtra, songaymuon, sothangmuon, sonammuon, songaytra, sothangtra, sonamtra, kq = 1;
 
         private void dtmNgayMuon0_ValueChanged(object sender, EventArgs e)
         {
@@ -1320,58 +1246,55 @@ namespace QuanLyThuVien
             if (!string.IsNullOrEmpty(masach))
             {
                 var sach = GetSachId(masach);
-                var tongso =  GetsoLuongTongSoLuongMuon(masach);
-                int tongsocon = sach.SLNhap > 0 ? sach.SLNhap : 0;
-                int tongsomuon = 0;
-                if (tongso != null && tongso.Count > 0)
+                var tongso =  GetsoLuongTongSoLuongMuon(masach);                
+                int tongsocon = sach !=null && sach.SLNhap > 0? sach.SLNhap:0;
+                if (tongso != null && tongsocon > 0 && tongso.TongSoNhap > 0 && tongso.TongSoDangMuon > 0)
                 {
-                    tongsomuon = tongso.Sum(p => p.TongSoDangMuon);
-                    tongsocon = tongsocon - tongsomuon;
+                    tongsocon = tongso.TongSoNhap - tongso.TongSoDangMuon;
                 }
-
                 if (sach != null)
                 {
                     txtTenTacGia.Text = sach.TenTacGia;
                     txtTheLoai.Text = sach.TenTheLoai;
-                    txtSoLuongCon.Text = tongsocon > 0? tongsocon.ToString() :"";
+                    txtSoLuongCon.Text = tongsocon > 0? tongsocon.ToString() : "0";
                 }
             }
           
         }
 
-        public void soSanhNgay()
-        {
-            catngaymuon = dtNgayMuon.Text.IndexOf("/");
-            ngaymuon = dtNgayMuon.Text.Substring(0, catngaymuon);
-            catthangmuon = dtNgayMuon.Text.LastIndexOf("/");
-            hieumuon = (catthangmuon - 1) - catngaymuon;
-            thangmuon = dtNgayMuon.Text.Substring(catngaymuon + 1, hieumuon);
-            nammuon = dtNgayMuon.Text.Substring(catthangmuon + 1, 4);
+        //public void soSanhNgay()
+        //{
+        //    catngaymuon = dtNgayMuon.Text.IndexOf("/");
+        //    ngaymuon = dtNgayMuon.Text.Substring(0, catngaymuon);
+        //    catthangmuon = dtNgayMuon.Text.LastIndexOf("/");
+        //    hieumuon = (catthangmuon - 1) - catngaymuon;
+        //    thangmuon = dtNgayMuon.Text.Substring(catngaymuon + 1, hieumuon);
+        //    nammuon = dtNgayMuon.Text.Substring(catthangmuon + 1, 4);
 
-            songaymuon= Convert.ToInt32(ngaymuon);
-            sothangmuon= Convert.ToInt32(thangmuon);
-            sonammuon= Convert.ToInt32(nammuon);
+        //    songaymuon= Convert.ToInt32(ngaymuon);
+        //    sothangmuon= Convert.ToInt32(thangmuon);
+        //    sonammuon= Convert.ToInt32(nammuon);
 
-            catngaytra = dtNgayTra.Text.IndexOf("/");
-            ngaytra = dtNgayTra.Text.Substring(0, catngaytra);
-            catthangtra = dtNgayTra.Text.LastIndexOf("/");
-            hieutra = (catthangtra - 1) - catngaytra;
-            thangtra = dtNgayTra.Text.Substring(catngaytra + 1, hieutra);
-            namtra = dtNgayTra.Text.Substring(catthangtra + 1, 4);
+        //    catngaytra = dtNgayTra.Text.IndexOf("/");
+        //    ngaytra = dtNgayTra.Text.Substring(0, catngaytra);
+        //    catthangtra = dtNgayTra.Text.LastIndexOf("/");
+        //    hieutra = (catthangtra - 1) - catngaytra;
+        //    thangtra = dtNgayTra.Text.Substring(catngaytra + 1, hieutra);
+        //    namtra = dtNgayTra.Text.Substring(catthangtra + 1, 4);
 
-            songaytra = Convert.ToInt32(ngaytra);
-            sothangtra = Convert.ToInt32(thangtra);
-            sonamtra = Convert.ToInt32(namtra);
+        //    songaytra = Convert.ToInt32(ngaytra);
+        //    sothangtra = Convert.ToInt32(thangtra);
+        //    sonamtra = Convert.ToInt32(namtra);
 
-            DateTime tgMuon = new DateTime(sonammuon, sothangmuon, songaymuon);
-            DateTime tgTra = new DateTime(sonamtra, sothangtra, songaytra);
+        //    DateTime tgMuon = new DateTime(sonammuon, sothangmuon, songaymuon);
+        //    DateTime tgTra = new DateTime(sonamtra, sothangtra, songaytra);
 
 
-            //MessageBox.Show("Ngày mượn: " + ngaymuon + "Tháng mượn: " + thangmuon + "Năm mượn: " + nammuon);
-            kq=tgTra.CompareTo(tgMuon);
-            //MessageBox.Show("kq: " + kq, "Thông Báo");
-            //DateTime ngaymuon= new DateTime()
-        }
+        //    //MessageBox.Show("Ngày mượn: " + ngaymuon + "Tháng mượn: " + thangmuon + "Năm mượn: " + nammuon);
+        //    kq=tgTra.CompareTo(tgMuon);
+        //    //MessageBox.Show("kq: " + kq, "Thông Báo");
+        //    //DateTime ngaymuon= new DateTime()
+        //}
 
         public string strluuSLCon;
         private void cboMaSach0_SelectedIndexChanged(object sender, EventArgs e)
@@ -1435,7 +1358,47 @@ namespace QuanLyThuVien
 
         private void dataGridViewDSMuon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            foreach (DataGridViewCell cell in dataGridViewDSMuon.SelectedCells)
+            {
+                //cell.RowIndex
+                setControls(false);
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colMaSach"].Value != null)
+                {
+                    cmbSach.SelectedValue = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colMaSach"].Value.ToString();                    
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colMaPhieu"].Value != null)
+                {
+                    cmbMaPhieu.SelectedValue = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colMaPhieu"].Value.ToString();
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayMuon"].Value != null && !string.IsNullOrEmpty(dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayMuon"].Value.ToString()))
+                {
+                    dtNgayMuon.Value = Convert.ToDateTime(dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayMuon"].Value.ToString());
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayTra"].Value != null && !string.IsNullOrEmpty(dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayTra"].Value.ToString()))
+                {
+                    dtNgayTra.Value = Convert.ToDateTime(dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colNgayTra"].Value.ToString());
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colTinhTrang"].Value != null)
+                {
+                    cmbTinhTrangMuonSach.SelectedItem = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colTinhTrang"].Value.ToString();
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colSLMuon"].Value != null)
+                {
+                    txtSoLuongMuon.Text = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colSLMuon"].Value.ToString();
+                }
+                if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colGhiChu"].Value != null)
+                {
+                    txtGhiChuMuonSach.Text = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["colGhiChu"].Value.ToString();
+                }
+                //if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["tdTen"].Value != null)
+                //{
+                //    txtTenTheLoai.Text = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["tdTen"].Value.ToString();
+                //}
+                //if (dataGridViewDSMuon.Rows[cell.RowIndex].Cells["tdGhiChu"].Value != null)
+                //{
+                //    txtGhiChu.Text = dataGridViewDSMuon.Rows[cell.RowIndex].Cells["tdGhiChu"].Value.ToString();
+                //}
+            }
         }
 
         private void dataGridViewSachMuon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1704,70 +1667,44 @@ namespace QuanLyThuVien
 
         }
 
-        private void giaHanSach()
-        {
-            //soSanhNgay();
-            //if (kq == 1)
-            //{
-            //    string strCapNhatSLCon = "set dateformat dmy; update tblHSPhieuMuon set NgayMuon='" + dtNgayMuon.Text + " ', NgayTra='" + dtNgayTra.Text + "' where MaPhieu='" + txtMaPhieu0.Text + "'";
-            //    ketnoi(strCapNhatSLCon);
-            //    myCommand.ExecuteNonQuery();
-            //    MessageBox.Show("Gia hạn thành công.", "Thông Báo");
+        //private void giaHanSach()
+        //{
+        //    //soSanhNgay();
+        //    //if (kq == 1)
+        //    //{
+        //    //    string strCapNhatSLCon = "set dateformat dmy; update tblHSPhieuMuon set NgayMuon='" + dtNgayMuon.Text + " ', NgayTra='" + dtNgayTra.Text + "' where MaPhieu='" + txtMaPhieu0.Text + "'";
+        //    //    ketnoi(strCapNhatSLCon);
+        //    //    myCommand.ExecuteNonQuery();
+        //    //    MessageBox.Show("Gia hạn thành công.", "Thông Báo");
 
-            //    string cauTruyVan = "select * from tblHSPhieuMuon";
-            //    dataGridViewDSMuon.DataSource = ketnoi(cauTruyVan);
-            //    dataGridViewDSMuon.AutoGenerateColumns = false;
-            //    myConnection.Close();
+        //    //    string cauTruyVan = "select * from tblHSPhieuMuon";
+        //    //    dataGridViewDSMuon.DataSource = ketnoi(cauTruyVan);
+        //    //    dataGridViewDSMuon.AutoGenerateColumns = false;
+        //    //    myConnection.Close();
 
-            //    setControlsMuon(false);
-            //    btnNhap.Enabled = true;
-            //    btnChoMuon0.Text = "Cho Mượn";
-            //    btnChoMuon0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            //    btnChoMuon0.Enabled = false;
-            //    btnGiaHan.Enabled = true;
-            //    btnHuy0.Enabled = false;
+        //    //    setControlsMuon(false);
+        //    //    btnNhap.Enabled = true;
+        //    //    btnChoMuon0.Text = "Cho Mượn";
+        //    //    btnChoMuon0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        //    //    btnChoMuon0.Enabled = false;
+        //    //    btnGiaHan.Enabled = true;
+        //    //    btnHuy0.Enabled = false;
 
-            //    dataGridViewDSMuon.Enabled = true;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vui lòng chọn ngày trả lớn hơn ngày mượn.", "Thông Báo");
-            //}
+        //    //    dataGridViewDSMuon.Enabled = true;
+        //    //}
+        //    //else
+        //    //{
+        //    //    MessageBox.Show("Vui lòng chọn ngày trả lớn hơn ngày mượn.", "Thông Báo");
+        //    //}
                 
-        }
+        //}
         private void btnChoMuon0_Click(object sender, EventArgs e)
-        {
-            // string query = "Select GiaTri from ThamSo Where TenTS='GiaTriThe'";
-            // ketnoi(query);
-            // int GiaTriThe = Convert.ToInt32(myCommand.ExecuteScalar());
-            //// query = "set dateformat dmy; Select NgLapThe from tblDocGia Where MaDG='" + cboMaDG0.Text + "'";
-            // ketnoi(query);
-            // DateTime ngaylap = Convert.ToDateTime(myCommand.ExecuteScalar());
-
-
-
-            // TimeSpan han = DateTime.Now - ngaylap;
-            // if (han.Days > GiaTriThe*31)
-            // {
-            //     MessageBox.Show("Thẻ đã hết hạn!");
-            //     return;
-            // }
-
-            //if (xuly==0)
-            //{
-            //    muonSach();
-            //}
-            //else if(xuly==1)
-            //{
-            //    giaHanSach();
-
-
-            //}
-            if (txtSoLuongCon.Text != "" && txtSoLuongCon.Text != "Hết")
+        {            
+            if (txtSoLuongCon.Text != "0")
             {
 
                 if (xuly == 0)
-                {                   
+                {
                     ThemMoiChiTietPhieuMuon();
                 }
                 else if (xuly == 1)
@@ -1784,9 +1721,12 @@ namespace QuanLyThuVien
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
+                btnChoMuon0.Enabled = false;
                 setControls(false);
                 SetValueNullChiTietPM();
                 LoadDataChiTietPhieuMuon();
+                Loadcmb();
+                btnChoMuon0.Enabled = false;
             }
             else
             {
@@ -1803,8 +1743,10 @@ namespace QuanLyThuVien
 
         private void btnHuy0_Click(object sender, EventArgs e)
         {
-            setControlsChiTietPM(false);
+            setControlsChiTietPM(true);
             SetValueNullChiTietPM();
+            btnNhap.Enabled = true;
+            btnChoMuon0.Enabled = false;
             //txtMaPhieu0.Text = tangMaTuDong();
             //cboMaDG0.Text = "";
             //cboMaSach0.Text = "";
@@ -1831,17 +1773,6 @@ namespace QuanLyThuVien
             this.Close();
         }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // tabTraSach
-        //public void layMaPhieuTra()
-        //{
-        //    string strLayMaPhieu = "select * from tblHSPhieuMuon";
-        //    cboMaPhieu1.DataSource = ketnoitblSach(strLayMaPhieu);
-        //    cboMaPhieu1.DisplayMember = "MaPhieu";
-        //    cboMaPhieu1.ValueMember = "MaPhieu";
-        //    myConnection.Close();
-        //}
 
         private void setControlsTra(bool edit)
         {
@@ -1851,37 +1782,35 @@ namespace QuanLyThuVien
             txtSLMuon1.Enabled = edit;
             dtNgayMuonSach.Enabled = edit;
             dtNgayHenTraSach.Enabled = edit;
-            //txtGhiChu1.Enabled = edit;
-            //txtTinhTrang1.Enabled = edit;
         }
 
-        public string maPhieu1, maDG1, maSach1, luuSLTra1, ngayMuon1, ngayTra1, ghiChu1, tinhTrang1;
+      //  public string maPhieu1, maDG1, maSach1, luuSLTra1, ngayMuon1, ngayTra1, ghiChu1, tinhTrang1;
         private void dataGridViewDSMuon1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                int row = e.RowIndex;
-                txtMaPhieu1.Text=myTable.Rows[row]["MaPhieu"].ToString();
-                maPhieu1 = txtMaPhieu1.Text;
-                txtMaDG1.Text = myTable.Rows[row]["MaDG"].ToString();
-                maDG1 = txtMaDG1.Text;
-                txtMaSach1.Text = myTable.Rows[row]["MaSach"].ToString();
-                maSach1 = txtMaSach1.Text;
-                txtSLMuon1.Text = myTable.Rows[row]["SLMuon"].ToString();
-                luuSLTra1 = txtSLMuon1.Text;
-                dtNgayMuonSach.Text = myTable.Rows[row]["NgayMuon"].ToString();
-                ngayMuon1 = dtNgayMuonSach.Text;
-                dtNgayHenTraSach.Text = myTable.Rows[row]["NgayTra"].ToString();
-                ngayTra1 = dtNgayHenTraSach.Text;
-                //txtTinhTrang1.Text = myTable.Rows[row]["TinhTrang"].ToString();
-                //tinhTrang1 = txtTinhTrang1.Text;
-                //txtGhiChu1.Text = myTable.Rows[row]["GhiChu"].ToString();
-                //ghiChu1 = txtGhiChu1.Text;
-            }
-            catch(Exception)
-            {
+            //try
+            //{
+            //    int row = e.RowIndex;
+            //    txtMaPhieu1.Text=myTable.Rows[row]["MaPhieu"].ToString();
+            //    maPhieu1 = txtMaPhieu1.Text;
+            //    txtMaDG1.Text = myTable.Rows[row]["MaDG"].ToString();
+            //    maDG1 = txtMaDG1.Text;
+            //    txtMaSach1.Text = myTable.Rows[row]["MaSach"].ToString();
+            //    maSach1 = txtMaSach1.Text;
+            //    txtSLMuon1.Text = myTable.Rows[row]["SLMuon"].ToString();
+            //    luuSLTra1 = txtSLMuon1.Text;
+            //    dtNgayMuonSach.Text = myTable.Rows[row]["NgayMuon"].ToString();
+            //    ngayMuon1 = dtNgayMuonSach.Text;
+            //    dtNgayHenTraSach.Text = myTable.Rows[row]["NgayTra"].ToString();
+            //    ngayTra1 = dtNgayHenTraSach.Text;
+            //    //txtTinhTrang1.Text = myTable.Rows[row]["TinhTrang"].ToString();
+            //    //tinhTrang1 = txtTinhTrang1.Text;
+            //    //txtGhiChu1.Text = myTable.Rows[row]["GhiChu"].ToString();
+            //    //ghiChu1 = txtGhiChu1.Text;
+            //}
+            //catch(Exception)
+            //{
 
-            }
+            //}
         }
 
         public int luuSLSauTra;
@@ -1908,57 +1837,7 @@ namespace QuanLyThuVien
                 }
                 LoadDataChiTietSachMuon();
             }
-            //string strlaydulieu = "select * from tblSach where MaSach='" + txtMaSach1.Text + "'";
-            //myConnection = new SqlConnection(strKetNoi);
-            //myConnection.Open();
-            //string thuchiencaulenh = strlaydulieu;
-            //myCommand = new SqlCommand(thuchiencaulenh, myConnection);
-            //myDataReaderSach = myCommand.ExecuteReader();
-            //while (myDataReaderSach.Read())
-            //{
-            //    luuSLConTabMuon = myDataReaderSach.GetInt32(6).ToString();
-            //}
-
-                //luuSLSauTra = Convert.ToInt32(luuSLTra1) + Convert.ToInt32(luuSLConTabMuon);
-                ////MessageBox.Show("SL Còn: " + luuSLConTabMuon);
-                ////MessageBox.Show("SL sau trả: " + luuSLSauTra);
-                ////MessageBox.Show("SL trả: " + luuSLTra1);
-                //DialogResult dlr;
-                //dlr = MessageBox.Show("Bạn chắc chắn muốn trả sách.", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (dlr == DialogResult.Yes)
-                //{
-                //    try
-                //    {
-                //        string xoadongsql;
-                //        xoadongsql = "delete from tblHSPhieuMuon where MaPhieu='" + txtMaPhieu1.Text + "'";
-                //        ketnoi(xoadongsql);
-                //        myCommand.ExecuteNonQuery();
-                //        MessageBox.Show("Trả sách thành công.", "Thông Báo");
-                //        myConnection.Close();
-                //        try
-                //        {
-                //            string strluuSLSauTra = luuSLSauTra.ToString();
-                //            string strCapNhatSLCon = "update tblSach set SLNhap='" + strluuSLSauTra + " ' where MaSach='" + txtMaSach1.Text + "'";
-                //            ketnoi(strCapNhatSLCon);
-                //            myCommand.ExecuteNonQuery();
-                //            MessageBox.Show("Đã cập nhật SL Sách vào kho.", "Thông Báo");
-                //            myConnection.Close();
-                //        }
-                //        catch
-                //        {
-                //            MessageBox.Show("Cập nhật SL Sách thất bại.", "Thông Báo");
-                //        }
-                //    }
-                //    catch (Exception)
-                //    {
-                //        MessageBox.Show("Trả sách thất bại.", "Thông Báo");
-                //    }
-                //}
-
-                //string cauTruyVan = "select * from tblHSPhieuMuon";
-                ////dataGridViewDSMuon1.DataSource = ketnoi(cauTruyVan);
-                ////dataGridViewDSMuon1.AutoGenerateColumns = false;
-                //myConnection.Close();
+          
         }
         private void btnTraSach1_Click(object sender, EventArgs e)
         {
@@ -1986,20 +1865,13 @@ namespace QuanLyThuVien
 
         private void btnLoadDS1_Click(object sender, EventArgs e)
         {
-            //layMaPhieuTra();
-            //string cauTruyVan = "select * from tblHSPhieuMuon";
-            ////dataGridViewDSMuon1.DataSource = ketnoi(cauTruyVan);
-            ////dataGridViewDSMuon1.AutoGenerateColumns = false;
-            //myConnection.Close();
+           
             LoadDataChiTietSachMuon();
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            //string cauTruyVan = "select * from tblHSPhieuMuon";
-            ////dataGridViewDSMuon1.DataSource = ketnoi(cauTruyVan);
-            ////dataGridViewDSMuon1.AutoGenerateColumns = false;
-            //myConnection.Close();
+           
         }
 
         private void cboTinhTrang0_SelectedIndexChanged(object sender, EventArgs e)
@@ -2007,37 +1879,6 @@ namespace QuanLyThuVien
 
         }
 
-        //private void cboMaPhieu1_SelectedIndexChanged_1(object sender, EventArgs e)
-        //{
-        //    setControlsTra(true);
-            
-        //    //dataGridViewDSMuon1.DataSource = ketnoi(cauTruyVan);
-        //    //dataGridViewDSMuon1.AutoGenerateColumns = false;
-        //    //myConnection.Close();
-        //    //string cauTruyVan = "";
-        //    string strlaydulieu = "select * from tblHSPhieuMuon where MaPhieu='" + cboMaPhieu1.SelectedValue.ToString() + "'";
-        //    myConnection = new SqlConnection(strKetNoi);
-        //    myConnection.Open();
-        //    string thuchiencaulenh = strlaydulieu;
-        //    myCommand = new SqlCommand(thuchiencaulenh, myConnection);
-        //    myDataReaderMuonTra = myCommand.ExecuteReader();
-        //    while (myDataReaderMuonTra.Read())
-        //    {
-        //        //luuMaSach = cboMaSach0.Text;
-                
-        //        txtMaDG1.Text = myDataReaderMuonTra.GetString(1);
-        //        txtMaSach1.Text = myDataReaderMuonTra.GetString(2);
-        //        txtSLMuon1.Text = myDataReaderMuonTra.GetInt32(5).ToString();
-        //        dtmNgayMuon1.Text = myDataReaderMuonTra.GetString(3);
-        //        dtmNgayTra1.Text = myDataReaderMuonTra.GetString(4);
-        //        txtGhiChu1.Text = myDataReaderMuonTra.GetString(6);
-        //    }
-
-
-
-
-
-
-        //}   
+       
     }
 }
